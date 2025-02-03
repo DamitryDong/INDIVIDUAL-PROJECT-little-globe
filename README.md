@@ -1,1 +1,3 @@
 # INDIVIDUAL-PROJECT-little-globe
+
+WORK IN PROGRESS
