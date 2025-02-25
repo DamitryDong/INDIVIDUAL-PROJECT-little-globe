@@ -1,0 +1,47 @@
+{
+    "posts": {
+      "post_1": {
+        "id": 1,
+        "imgUrl": "https://example.com/image1.jpg",
+        "description": "A beautiful sunset over the mountains.",
+        "uid": "user_123",
+        "locationId": "loc_456"
+      },
+      "post_2": {
+        "id": 2,
+        "imgUrl": "https://example.com/image2.jpg",
+        "description": "A cozy coffee shop in the city.",
+        "uid": "user_789",
+        "locationId": "loc_101"
+      },
+      "post_3": {
+        "id": 3,
+        "imgUrl": "https://example.com/image3.jpg",
+        "description": "Hiking trail with an amazing view.",
+        "uid": "user_456",
+        "locationId": "loc_789"
+      },
+      "post_4": {
+        "id": 4,
+        "imgUrl": "https://example.com/image4.jpg",
+        "description": "Delicious homemade pasta dish.",
+        "uid": "user_111",
+        "locationId": "loc_222"
+      },
+      "post_5": {
+        "id": 5,
+        "imgUrl": "https://example.com/image5.jpg",
+        "description": "A cat enjoying the sunshine.",
+        "uid": "user_333",
+        "locationId": "loc_555"
+      },
+      "post_6": {
+        "id": 6,
+        "imgUrl": "https://example.com/image6.jpg",
+        "description": "Street art in downtown.",
+        "uid": "user_777",
+        "locationId": "loc_999"
+      }
+    }
+  }
+  
