@@ -1,50 +1,49 @@
-/* eslint-disable @next/next/no-img-element */
-
 'use client';
 
-import '../style/globals.css';
-import React from 'react';
-import { Navbar, Container, Nav, Offcanvas, Button } from 'react-bootstrap';
-import { signOut } from '@/utils/auth';
+import { signOutUser } from '@/utils/auth';
+import { Avatar, Dropdown, Navbar } from "flowbite-react";
 
 function MyNavbar() {
+
   return (
-    <div className="navbardivforsticky">
-      <Navbar expand={false}>
-        <Container fluid>
-          <Navbar.Toggle />
-          <Navbar.Offcanvas>
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvasNavbarLabel" style={{ paddingLeft: '2px' }}>
-                <div>
-                  <img src="\images/cowboy-hat-illustration-png.webp" alt="logo" style={{ height: '30px', width: 'auto' }} />
-                  <strong style={{ color: 'white' }}>Navigations</strong>
-                </div>
-              </Offcanvas.Title>
-            </Offcanvas.Header>
-            <Offcanvas.Body>
-              <Nav className="justify-content-start flex-grow-1 pe-3">
-                <Button className="nav-link custom-nav-link" href="/" data-content="Home Screen">
-                  Home
-                </Button>
-                <Button className="nav-link custom-nav-link" href="/booking" data-content="Current Bookings">
-                  Booking
-                </Button>
-                <Button className="nav-link custom-nav-link" href="/booking/new" data-content="New Booking">
-                  Create Booking
-                </Button>
-                <Button className="nav-link custom-nav-link" href="/event" data-content="Check Events">
-                  Events
-                </Button>
-                <Button className="nav-link custom-nav-link" onClick={signOut} data-content="Sign Out">
-                  Sign Out
-                </Button>
-              </Nav>
-            </Offcanvas.Body>
-          </Navbar.Offcanvas>
-        </Container>
-      </Navbar>
-    </div>
+        <Navbar fluid rounded>
+          <Navbar.Brand href="/">
+            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full" alt="Flowbite React Logo"/>
+            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Little Globe</span>
+          </Navbar.Brand>
+          <div className="flex md:order-2">
+            <Dropdown
+              arrowIcon={false}
+              inline
+              label={
+                <Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
+              }
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">Bonnie Green</span>
+                <span className="block truncate text-sm font-medium">name@flowbite.com</span>
+              </Dropdown.Header>
+              <Dropdown.Item>Dashboard</Dropdown.Item>
+              <Dropdown.Item>Settings</Dropdown.Item>
+              <Dropdown.Item>Earnings</Dropdown.Item>
+              <Dropdown.Divider />
+              <div onClick={signOutUser}>
+                <Dropdown.Item>Sign out</Dropdown.Item>
+              </div>
+              
+            </Dropdown>
+            <Navbar.Toggle />
+          </div>
+          <Navbar.Collapse>
+            <Navbar.Link href="#" active>
+              Home
+            </Navbar.Link>
+            <Navbar.Link href="#">About</Navbar.Link>
+            <Navbar.Link href="#">Services</Navbar.Link>
+            <Navbar.Link href="#">Pricing</Navbar.Link>
+            <Navbar.Link href="#">Contact</Navbar.Link>
+          </Navbar.Collapse>
+        </Navbar>
   );
 }
 

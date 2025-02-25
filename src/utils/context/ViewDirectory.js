@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useAuth } from '@/utils/context/authContext';
 import Loading from './Loading';
-import SignIn from '@/components/SignIn';
+import Signin from '@/Componenets/SignIn';
 import MyNavbar from '@/Componenets/NavBar';
 
 function ViewDirectorBasedOnUserAuthStatus({ children }) {
@@ -22,7 +22,7 @@ function ViewDirectorBasedOnUserAuthStatus({ children }) {
     );
   }
 
-  return <SignIn />;
+  return <Signin />;
 }
 
 export default ViewDirectorBasedOnUserAuthStatus;

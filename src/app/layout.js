@@ -1,6 +1,7 @@
 import { Oswald } from 'next/font/google';
 import "@/style/globals.css";
 import ClientProvider from '@/utils/context/ClientProvider';
+import { ThemeModeScript } from "flowbite-react";
 
 const oswald = Oswald({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -12,13 +13,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+
+      <head>
+        <ThemeModeScript />
+      </head>
+
       <body
         className={`${oswald.className}`}
       >
         <ClientProvider>
         {children}
         </ClientProvider>
-        
+
       </body>
     </html>
   );

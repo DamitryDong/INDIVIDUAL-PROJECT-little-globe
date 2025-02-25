@@ -1,17 +1,9 @@
-import React from 'react';
-import { Spinner } from 'react-bootstrap';
+import React from "react";
 
 export default function Loading() {
   return (
-    <div className="text-center mt-5">
-      <Spinner
-        animation="border"
-        style={{
-          color: '#00BF67',
-          width: '100px',
-          height: '100px',
-        }}
-      />
+    <div className="flex justify-center items-center mt-5">
+      <div className="w-24 h-24 border-4 border-green-500 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 }
