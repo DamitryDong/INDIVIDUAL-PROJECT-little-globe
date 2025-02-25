@@ -1,5 +1,6 @@
 import { Oswald } from 'next/font/google';
 import "@/style/globals.css";
+import ClientProvider from '@/utils/context/ClientProvider';
 
 const oswald = Oswald({ subsets: ['latin'], weight: ['400', '700'] });
 
@@ -14,7 +15,10 @@ export default function RootLayout({ children }) {
       <body
         className={`${oswald.className}`}
       >
+        <ClientProvider>
         {children}
+        </ClientProvider>
+        
       </body>
     </html>
   );
