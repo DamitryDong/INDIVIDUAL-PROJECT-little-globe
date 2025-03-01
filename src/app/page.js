@@ -1,10 +1,11 @@
 import GeminiTest from "@/Componenets/Gemini";
+import MapBoxMap from "@/Componenets/MapBox";
 
 export default function Home() {
   return (
-    <div className="flex flex-col align-middle bg-white text-black justify-items-center text-center">
-        Little Globe
+    <div className="flex flex-col items-center justify-center bg-white text-black">
         <GeminiTest/>
+        <MapBoxMap/>
     </div>
   );
 }

@@ -46,9 +46,7 @@ function MyNavbar() {
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>
-            <Navbar.Link href="#" active>
-            NoWORK
-            </Navbar.Link>
+            <Navbar.Link href="#">NoWORK</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>

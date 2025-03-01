@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import "@/style/globals.css";
 import ClientProvider from '@/utils/context/ClientProvider';
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const poppins = Poppins({ subsets: ['latin'], weight: ['400', '700'] });
 
