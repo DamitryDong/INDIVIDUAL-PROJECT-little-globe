@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const geminiApiKey = process.env.NEXT_PUBLIC_GEMINI_API;

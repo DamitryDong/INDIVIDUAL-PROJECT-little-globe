@@ -26,13 +26,11 @@ function MapBoxMap() {
   }, []);
 
   return (
-    <div className="w-1/2 h-screen">
             <div
             id="mapContainer"
-            className="w-full h-full rounded-full shadow-lg bg-gray-300 z-10"
+            className="w-full h-full rounded-full shadow-lg bg-transparent z-10"
             >
             </div>
-    </div>
   );
 }
 

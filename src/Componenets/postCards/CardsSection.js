@@ -15,12 +15,10 @@ export default function CardSection() {
     }, [])
 
     return (
-        <div>
-            {posts.map((post) => {
-                return (
-                    <ImageCards key={post.id}/>
-                )
-            })}
-        </div>
+<div className="max-h-[300px] border ">
+        {posts.map((post) => (
+            <ImageCards key={post.id} cardobj={post}/>
+        ))}
+</div>
     )
 }

@@ -14,10 +14,10 @@ function MyNavbar() {
   return (
         <Navbar fluid rounded>
           <Navbar.Brand href="/">
-            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full" alt="Flowbite React Logo"/>
+            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full" alt="Logo"/>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Little Globe</span>
           </Navbar.Brand>
-          <div className="flex md:order-2">
+          <div className="flex md:order-2 z-20">
             <Dropdown
               arrowIcon={false}
               inline
@@ -46,8 +46,8 @@ function MyNavbar() {
             <Navbar.Toggle />
           </div>
           <Navbar.Collapse>
-            <Navbar.Link href="#">NoWORK</Navbar.Link>
-            <Navbar.Link href="#">NoWORK</Navbar.Link>
+            <Navbar.Link href="/">Home</Navbar.Link>
+            <Navbar.Link href="#">NADADADA</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>
             <Navbar.Link href="#">NoWORK</Navbar.Link>
