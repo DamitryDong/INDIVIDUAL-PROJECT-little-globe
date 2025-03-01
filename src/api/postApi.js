@@ -3,8 +3,9 @@ import { firebaseConfig } from "@/utils/client";
 const endpoint = firebaseConfig.databaseURL;
 
 const getAllpost = () => 
+    console.log(endpoint) ||
     new Promise((resolve, reject) => {
-        fetch(`${endpoint}/posts`, {
+        fetch(`${endpoint}/posts.json`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
