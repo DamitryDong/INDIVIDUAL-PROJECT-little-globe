@@ -13,7 +13,7 @@ function GeminiTest() { // CAREFUL THIS IS REALLY SENSITIVE because you have to 
         const genAI = new GoogleGenerativeAI(geminiApiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const prompt = "how big is the moon?"; // THIS IS THE PROMPT
+        const prompt = "Location: , Cordinates: , Hay can you give me just this section back and tell me more "; // THIS IS THE PROMPT
         const result = await model.generateContent(prompt);
 
         console.log(await result.response.text()); // This should get me the response
