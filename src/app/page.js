@@ -29,7 +29,7 @@ export default function Home() {
         </SlideoutFrame>
 
       {/* Middle Section (Map) */}
-      <div className="w-full h-[50vh] md:h-screen md:w-full bg-white dark:bg-gray-800">
+      <div className="w-full h-screen bg-white dark:bg-gray-800">
         <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} />
       </div>
 

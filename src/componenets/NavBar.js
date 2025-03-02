@@ -3,13 +3,23 @@
 import { signOutUser } from '@/utils/auth';
 import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { useAuth } from '@/utils/context/authContext';
+import { useEffect, useState } from 'react';  
 
 
-function MyNavbar() {
+function MyNavbar( {handleMapDarkMode} ) {
+    const [imageUrl, setImageUrl] = useState(null);
     
     const { user } = useAuth()
 
-    console.log(user)
+    useEffect(() => { //did this because sometimes the user image to be broken or there's not a user image
+      if (!user.photoURL) {
+        const defaultImageReplacement = '/defaultProfile.jpeg';
+        setImageUrl(defaultImageReplacement);
+      }
+      else {
+        setImageUrl(user.photoURL);
+      }
+    }, [user.photoURL]);
 
   return (
         <Navbar>
@@ -22,7 +32,7 @@ function MyNavbar() {
               arrowIcon={false}
               inline
               label={
-                <Avatar alt="User settings" img={user.photoURL} rounded />
+                <Avatar alt="User Image" img={imageUrl} rounded />
               }
             >
               <Dropdown.Header>
@@ -40,7 +50,7 @@ function MyNavbar() {
             </Dropdown>
 
             <Flowbite>
-                <DarkThemeToggle />
+                <DarkThemeToggle onClick={() => handleMapDarkMode()}/>
             </Flowbite>
 
             <Navbar.Toggle />

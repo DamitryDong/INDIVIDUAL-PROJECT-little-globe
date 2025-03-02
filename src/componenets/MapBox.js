@@ -6,7 +6,7 @@ import mapboxgl from "mapbox-gl";
 // Securely load Mapbox API token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
-function MapBoxMap( {postObj, handleClickOnMain} ) {
+function MapBoxMap( {postObj, handleClickOnMain, darkTheme = true} ) {
   const [selectedCordinates, setSelectedCordinates] = useState(null);
   const mapRef = useRef(null); // this is Used for a ref to store the map instance so we can call it again with the second useeffect without resetting the map
   const markerRef = useRef(null); // this is Used for a ref to store the marker instance so we can remove the previous marker when a new one is made.
@@ -23,25 +23,26 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
     // Create a new Mapbox map instance
     const map = new mapboxgl.Map({
       container: "mapContainer", // The ID of the element where the map will be displayed
-      style: "mapbox://styles/mapbox/streets-v11", // Map style
+      style: darkTheme ? 'mapbox://styles/mapbox/navigation-night-v1' : 'mapbox://styles/mapbox/streets-v11', // map theme passing a way to trigger dark mode note the syntax..
       center: [postObj[0].longitude, postObj[0].latitude], // Longitude, Latitude of first post
       zoom: 2, // Zoom level
     });
 
-    mapRef.current = map;  // Store the map instance in the ref
-
+    map.doubleClickZoom.disable(); // Disable double click zoom since we're using double click to mark
+    mapRef.current = map;  // Store the ma  p instance in the ref
+    
     // Add the Map coordinates from postObj
     postObj.forEach((post) => {
       if (post.latitude && post.longitude) {
       new mapboxgl.Marker()
         .setLngLat([post.longitude, post.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.name}</h1><p>${post.description}</p>`))
+        .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
         .addTo(map);
       }
     })
 
     // ADd cortdinates to state for usage when double clicked
-    map.on("contextmenu", (e) => {
+    map.on("click", (e) => {
       const currentTime = Date.now();
       const timeDiff = currentTime - lastClickTime.current;
 

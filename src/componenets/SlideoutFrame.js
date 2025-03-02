@@ -11,8 +11,8 @@ export function SlideoutFrame({ children, buttonName, position, autoClose = fals
 
   return (
     <>
-      <div className={`flex min-h-[50vh] items-center justify-center absolute top-1/2 ${buttonPosition} z-30`}>
-        <Button pill onClick={() => setIsOpen(true)}>{buttonName}</Button>
+      <div className={`items-center justify-center absolute top-1/2 ${buttonPosition} z-30`}>
+        <Button size="sm" pill onClick={() => setIsOpen(true)}>{buttonName}</Button>
       </div>
 
       {/* Drawer with hidden overlay & manual close button */}
@@ -21,7 +21,7 @@ export function SlideoutFrame({ children, buttonName, position, autoClose = fals
         onClose={autoClose ? handleClose : () => {}} // Disable auto-close on background click
         position={position}
         backdrop={backDrop}  // Disable the backdrop to remove black background
-        className= {`${shadow} ${backgroundTrans}`}
+        className= {`${shadow} ${backgroundTrans} dark:${backgroundTrans}`}
       >
         <Drawer.Items className="relative">
           {/* Close button inside the Drawer */}
