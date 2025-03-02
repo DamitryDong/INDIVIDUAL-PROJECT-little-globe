@@ -1,4 +1,5 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
+import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
@@ -18,5 +19,6 @@ const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 // Export Firebase services
 const auth = getAuth(app);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
-export { app, auth, database, firebaseConfig };
+export { app, auth, database, firebaseConfig, storage };
