@@ -3,14 +3,14 @@
 import { Button, Drawer } from "flowbite-react";
 import { useState } from "react";
 
-export function SlideoutFrame({ children, buttonName, position, autoClose = false, backDrop = true }) {
+export function SlideoutFrame({ children, buttonName, position, autoClose = false, backDrop = true, buttonPosition = "left-0" }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClose = () => setIsOpen(false);
 
   return (
     <>
-      <div className="flex min-h-[50vh] items-center justify-center">
+      <div className={`flex min-h-[50vh] items-center justify-center absolute top-1/2 ${buttonPosition} z-30`}>
         <Button onClick={() => setIsOpen(true)}>{buttonName}</Button>
       </div>
 

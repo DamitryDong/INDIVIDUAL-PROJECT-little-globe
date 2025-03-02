@@ -25,7 +25,7 @@ export function LocationSearch({ clickedLocation }) {
   
 
   return (
-    <div className="flex max-w-md flex-col gap-4 bg-white p-4 rounded-lg shadow-md dark:bg-gray-800 dark:text-white h-screen">
+    <div className="flex max-w-md flex-col gap-4 bg-white p-4 rounded-lg dark:bg-gray-800 dark:text-white h-screen">
       {/* Longitude */}
       <div>
         <Label htmlFor="longitude" value="Longitude"/>
