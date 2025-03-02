@@ -70,7 +70,7 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
     }
 
     const temporaryMarker = new mapboxgl.Marker({
-      color: 'red'  // Change the marker color to red this is buuild in class style from mapgl
+      color: 'green'  // Change the marker color to red this is buuild in class style from mapgl
     })
         .setLngLat([selectedCordinates.longitude, selectedCordinates.latitude])
         .setPopup(new mapboxgl.Popup().setHTML(`<h1>New Post Location!</h1>`))

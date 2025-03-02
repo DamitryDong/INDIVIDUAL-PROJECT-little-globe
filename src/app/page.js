@@ -1,6 +1,7 @@
 'use client'
 
 import React, {useState, useEffect} from "react";
+import { SlideoutFrame } from "@/componenets/SlideoutFrame";
 import MapBoxMap from "@/componenets/MapBox";
 import CardSection from "@/componenets/postCards/CardsSection";
 import { LocationSearch } from "@/componenets/LocationSearch";
@@ -21,20 +22,25 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-row justify-center bg-white text-black h-screen">
-
-      <div className=" w-1/4 bg-yellow-200 overflow-y-auto">
-        <CardSection postObj={posts}/>
+    <div className="flex flex-col md:flex-row justify-center bg-white text-black h-screen">
+      {/* Left Section */}
+      <div className="w-full md:w-1/4 bg-yellow-200 overflow-y-auto">
+        <SlideoutFrame buttonName="Explore" position="left" autoClose={true}>
+          <CardSection postObj={posts} />
+        </SlideoutFrame>
       </div>
 
-      <div className="w-1/2 h-screen bg-slate-200">
-        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
+      {/* Middle Section (Map) */}
+      <div className="w-full h-[50vh] md:h-screen md:w-full bg-slate-200">
+        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} />
       </div>
 
-      <div className="w-1/4 bg-green-700">
-        <LocationSearch clickedLocation={clickedLocation}/> 
+      {/* Right Section */}
+      <div className="w-full md:w-1/4 bg-green-700">
+      <SlideoutFrame buttonName="Post" position="right" backDrop={false}>
+        <LocationSearch clickedLocation={clickedLocation} />
+      </SlideoutFrame>
       </div>
-
     </div>
   );
 }
