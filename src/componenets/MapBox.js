@@ -6,7 +6,7 @@ import mapboxgl from "mapbox-gl";
 // Securely load Mapbox API token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
-function MapBoxMap( {postObj} ) {
+function MapBoxMap( {postObj, handleClickOnMain} ) {
   const [selectedCordinates, setSelectedCordinates] = useState(null);
   const mapRef = useRef(null); // this is Used for a ref to store the map instance so we can call it again with the second useeffect without resetting the map
   const markerRef = useRef(null); // this is Used for a ref to store the marker instance so we can remove the previous marker when a new one is made.
@@ -40,14 +40,15 @@ function MapBoxMap( {postObj} ) {
       }
     })
 
-    // ADd cortdinates to state for usage
+    // ADd cortdinates to state for usage when double clicked
     map.on("contextmenu", (e) => {
       const currentTime = Date.now();
       const timeDiff = currentTime - lastClickTime.current;
 
-      if (timeDiff < 300) {
+      if (timeDiff < 300) { 
         const { lng, lat } = e.lngLat; // Get the longitude and latitude of the clicked point
         setSelectedCordinates({ longitude: lng, latitude: lat }); // Store coordinates in state
+        handleClickOnMain({ longitude: lng, latitude: lat }); // Call the parent function
       }
 
       lastClickTime.current = currentTime; // update the last click time if the if statement is false (this is the else)
@@ -83,7 +84,7 @@ function MapBoxMap( {postObj} ) {
   return (
             <div
             id="mapContainer"
-            className="w-full h-full rounded-full shadow-lg bg-transparent z-10"
+            className="w-full h-full shadow-lg bg-transparent z-10"
             >
             </div>
   );

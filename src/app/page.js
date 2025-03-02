@@ -8,12 +8,17 @@ import { getAllpost } from "@/api/postApi";
 
 export default function Home() {
   const [posts, setPosts] = useState([])
+  const [clickedLocation, setClickedLocation] = useState({})
+
+  const handdleLocationClick = (location) => {
+    setClickedLocation(location)
+  }
 
   useEffect(() => {
       getAllpost().then((post) => {
           setPosts(post)
       })
-  }, [])
+  }, []);
 
   return (
     <div className="flex flex-row justify-center bg-white text-black h-screen">
@@ -23,10 +28,12 @@ export default function Home() {
       </div>
 
       <div className="w-1/2 h-screen bg-slate-200">
-        <MapBoxMap postObj={posts}/>
+        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
       </div>
 
-      <div className="w-1/4 bg-green-700"><LocationSearch/> </div>
+      <div className="w-1/4 bg-green-700">
+        <LocationSearch clickedLocation={clickedLocation}/> 
+      </div>
 
     </div>
   );
