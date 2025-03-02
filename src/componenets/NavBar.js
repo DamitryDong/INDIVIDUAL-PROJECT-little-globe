@@ -12,7 +12,7 @@ function MyNavbar() {
     console.log(user)
 
   return (
-        <Navbar fluid rounded>
+        <Navbar>
           <Navbar.Brand href="/">
             <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full" alt="Logo"/>
             <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Little Globe</span>
@@ -48,9 +48,6 @@ function MyNavbar() {
           <Navbar.Collapse>
             <Navbar.Link href="/">Home</Navbar.Link>
             <Navbar.Link href="#">NADADADA</Navbar.Link>
-            <Navbar.Link href="#">NoWORK</Navbar.Link>
-            <Navbar.Link href="#">NoWORK</Navbar.Link>
-            <Navbar.Link href="#">NoWORK</Navbar.Link>
           </Navbar.Collapse>
         </Navbar>
   );

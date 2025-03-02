@@ -16,7 +16,7 @@ export function LocationSearch({ clickedLocation }) {
   }, [imageUrl]);
 
   if (!clickedLocation || !clickedLocation.longitude || !clickedLocation.latitude) {
-    return <div>Double right click any location on the map to set a post!</div>;
+    return <div className="dark:text-white">Double right click any location on the map to set a post!</div>;
   }
 
   const handleSubmit = () => {
@@ -27,15 +27,15 @@ export function LocationSearch({ clickedLocation }) {
   return (
     <div className="flex max-w-md flex-col gap-4 bg-white p-4 rounded-lg dark:bg-gray-800 dark:text-white h-screen">
       {/* Longitude */}
-      <div>
+      <div > 
         <Label htmlFor="longitude" value="Longitude"/>
-        <TextInput id="longitude" type="text" sizing="sm" value={clickedLocation.longitude} color="success" readOnly />
+        <TextInput id="longitude" style={{ cursor: 'default' }} type="text" sizing="sm" value={clickedLocation.longitude} color="success" readOnly />
       </div>
 
       {/* Latitude */}
       <div>
         <Label htmlFor="latitude" value="Latitude" />
-        <TextInput id="latitude" type="text" sizing="sm" value={clickedLocation.latitude} color="success" readOnly />
+        <TextInput id="latitude" style={{ cursor: 'default' }} type="text" sizing="sm" value={clickedLocation.latitude} color="success" readOnly />
       </div>
 
       {/* Location Name */}
