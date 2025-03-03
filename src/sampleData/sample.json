@@ -1,42 +1,47 @@
 [
   {
-    "name": "Nashville, TN",
-    "latitude": 36.1627,
-    "longitude": -86.7816,
-    "description": "Music City, USA",
-    "imageUrl": "https://example.com/nashville.jpg",
-    "createdAt": "2025-03-01T12:00:00Z"
+    "firebaseKey": "-OKSrL9x7qPIJ1QazewQ",
+    "caption": "dsadsa",
+    "imageUrl": "https://www.usnews.com/object/image/00000169-6cf9-df95-a57d-7cfbceaf0000/1-intro-getty.jpg?update-time=1552311636444&size=responsive640",
+    "latitude": 37.43070747102843,
+    "longitude": -91.57899524132765,
+    "locationName": "dasda",
+    "uid": "1uUfnZZ6f4Tq9xDItQhu3ujvF2s2"
   },
   {
-    "name": "Austin, TX",
-    "latitude": 30.2672,
-    "longitude": -97.7431,
-    "description": "Live Music Capital of the World",
-    "imageUrl": "https://example.com/austin.jpg",
-    "createdAt": "2025-03-02T14:30:00Z"
+    "firebaseKey": "-OKStf3X9yKPIJ2LmQwe",
+    "caption": "Beautiful sunset view",
+    "imageUrl": "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
+    "latitude": 34.052235,
+    "longitude": -118.243683,
+    "locationName": "Los Angeles, CA",
+    "uid": "2aBcdEfGhJkLmNoPqRsT3UvWxYz4"
   },
   {
-    "name": "New York City, NY",
-    "latitude": 40.7128,
-    "longitude": -74.0060,
-    "description": "The Big Apple",
-    "imageUrl": "https://example.com/nyc.jpg",
-    "createdAt": "2025-03-03T10:15:00Z"
+    "firebaseKey": "-OKStv4Y8zLQJ3NpQrXe",
+    "caption": "Snowy mountains",
+    "imageUrl": "https://images.unsplash.com/photo-1517821368397-19bb2a1b9b7a",
+    "latitude": 39.739236,
+    "longitude": -104.990251,
+    "locationName": "Denver, CO",
+    "uid": "3BcDeFgHiJkLmNoPqRsT4UvWxYz5"
   },
   {
-    "name": "Los Angeles, CA",
-    "latitude": 34.0522,
-    "longitude": -118.2437,
-    "description": "The City of Angels",
-    "imageUrl": "https://example.com/la.jpg",
-    "createdAt": "2025-03-04T09:45:00Z"
+    "firebaseKey": "-OKSuA5Z9xMQK4OrStYe",
+    "caption": "A day at the beach",
+    "imageUrl": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e",
+    "latitude": 25.761681,
+    "longitude": -80.191788,
+    "locationName": "Miami, FL",
+    "uid": "4CdEfGhIjKlMnOpQrSt5UvWxYz6"
   },
   {
-    "name": "Chicago, IL",
-    "latitude": 41.8781,
-    "longitude": -87.6298,
-    "description": "The Windy City",
-    "imageUrl": "https://example.com/chicago.jpg",
-    "createdAt": "2025-03-05T16:20:00Z"
+    "firebaseKey": "-OKSuB6A0yNQL5PrUtZe",
+    "caption": "City skyline at night",
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4",
+    "latitude": 40.712776,
+    "longitude": -74.005974,
+    "locationName": "New York City, NY",
+    "uid": "5DeFgHiJkLmNoPqRsT6UvWxYz7"
   }
 ]

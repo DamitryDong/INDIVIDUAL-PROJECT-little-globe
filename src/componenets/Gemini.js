@@ -13,7 +13,7 @@ function Gemini() { // CAREFUL THIS IS REALLY SENSITIVE because you have to pay 
         const genAI = new GoogleGenerativeAI(geminiApiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-        const prompt = "Test please respond that you're working, give me a funny joke if you are!"; // THIS IS THE PROMPT
+        const prompt = "tell me about cats in detail"; // THIS IS THE PROMPT
         const result = await model.generateContent(prompt);
 
         console.log(await result.response.text()); // This should get me the response

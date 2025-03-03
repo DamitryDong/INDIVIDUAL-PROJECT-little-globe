@@ -39,15 +39,12 @@ function MyNavbar() {
               }
             >
               <Dropdown.Header>
-                <span className="block text-sm">{user.displayName}</span>
-                <span className="block truncate text-sm font-medium">{user.email}</span>
+                <span className="block text-sm">{user.email}</span>
               </Dropdown.Header>
-              <Dropdown.Item>NoWORK</Dropdown.Item>
-              <Dropdown.Item>NoWORK</Dropdown.Item>
-              <Dropdown.Item>NoWORK</Dropdown.Item>
+              <Dropdown.Item href="/profile"><strong>Profile</strong></Dropdown.Item>
               <Dropdown.Divider />
               <div onClick={signOutUser}>
-                <Dropdown.Item>Sign out</Dropdown.Item>
+                <Dropdown.Item><strong>Sign out</strong></Dropdown.Item>
               </div>
               
             </Dropdown>

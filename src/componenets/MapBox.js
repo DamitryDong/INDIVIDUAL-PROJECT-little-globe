@@ -5,6 +5,8 @@ import mapboxgl from "mapbox-gl";
 import { useTheme } from "@/utils/context/ThemeContext";
 import FadeIn from "./GsapAnimation/MapLoad";
 import ScaleOpenAnimation from "./GsapAnimation/MapFirstLoad";
+import { useAuth } from "@/utils/context/authContext";
+import { userAgent } from "next/server";
 
 // Securely load Mapbox API token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
@@ -17,11 +19,11 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
   const lastClickTime = useRef(0); // this is Used for a ref for click time so I can see when a double click is made.
 
   const { darkTheme } = useTheme(); // this is used to get the darkTheme value from the context (the toggle is triggered by the darktheme button on navbar)
-
+  const { user } = useAuth();
 
   useEffect(() => {
     // THIS IS REQUIRED, THIS MAKES SURE THAT THIS IS ONLY RAN WEN WE HAVE DATA
-    if (!postObj || !Array.isArray(postObj) || postObj.length === 0) return;
+    if (!postObj || !Array.isArray(postObj) || postObj.length === 0)  return;
 
     // Initialize Mapbox
     mapboxgl.accessToken = MAPBOX_TOKEN;
@@ -44,10 +46,18 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
     // Add the Map coordinates from postObj
     postObj.forEach((post) => {
       if (post.latitude && post.longitude) {
-      new mapboxgl.Marker()
-        .setLngLat([post.longitude, post.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
-        .addTo(map);
+        if (post.uid === user.uid) {
+          new mapboxgl.Marker({color: "red"})
+          .setLngLat([post.longitude, post.latitude])
+          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .addTo(map);
+        }
+        else {
+          new mapboxgl.Marker()
+          .setLngLat([post.longitude, post.latitude])
+          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .addTo(map);
+        }
       }
     })
 
