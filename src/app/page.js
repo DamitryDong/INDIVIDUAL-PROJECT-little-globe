@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import { SlideoutFrame } from "@/componenets/SlideoutFrame";
 import MapBoxMap from "@/componenets/MapBox";
 import CardSection from "@/componenets/postCards/CardsSection";
-import { LocationSearch } from "@/componenets/LocationSearch";
+import { LocationSearchNPost } from "@/componenets/LocationSearch";
 import { getAllpost } from "@/api/postApi";
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row justify-center bg-white h-screen">
       {/* Left Section */}
-        <SlideoutFrame buttonName="Explore" position="left" autoClose={true} backgroundTrans="bg-transparent">
+        <SlideoutFrame buttonName="Discover" position="left" autoClose={true} backgroundTrans="bg-transparent">
           <CardSection postObj={posts} />
         </SlideoutFrame>
 
@@ -35,7 +35,7 @@ export default function Home() {
 
       {/* Right Section */}
       <SlideoutFrame buttonName="Post" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg">
-        <LocationSearch clickedLocation={clickedLocation} />
+        <LocationSearchNPost clickedLocation={clickedLocation} />
       </SlideoutFrame>
     </div>
   );

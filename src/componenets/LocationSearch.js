@@ -6,11 +6,12 @@ import { createPost, updatePost } from "@/api/postApi";
 import { Button } from "flowbite-react";
 import Gemini from "./Gemini";
 
-export function LocationSearch({ clickedLocation }) {
+export function LocationSearchNPost({ clickedLocation }) {
   const [imageUrl, setImageFile] = useState(null);
   const [isValidImage, setIsValidImage] = useState(true);
   const [locationName, setLocationName] = useState("");
   const [caption, setCaption] = useState("");
+
 
   useEffect(() => { //this is used to reset the image to true when after the image Url is change so we can check the next image
     setIsValidImage(true);
@@ -33,6 +34,8 @@ export function LocationSearch({ clickedLocation }) {
         firebaseKey: newPost.name
       }
       updatePost(firebasekeypayload)
+    }). then(() => {
+      window.location.reload();
     })
   }
   
