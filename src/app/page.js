@@ -39,8 +39,8 @@ export default function Home() {
 
   if (!userSetup) { // show a different return if it isn't setup
     return (
-      <div className="flex items-center justify-center h-screen bg-white">
-        <h1 className="text-2xl font-semibold text-gray-800">Please click your user Icon on the top and finish setup</h1>
+      <div className="flex items-center justify-center h-screen dark:bg-gray-800 dark:text-white" >
+        <h1 className="text-2xl font-semibold">Please click your user Icon on the top and finish setup</h1>
       </div>
     );
   }
