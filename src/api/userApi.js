@@ -24,6 +24,23 @@ const getAllUser = () =>
         .catch(reject)
 });
 
+const getSingleUserByUid = (uid) =>
+    new Promise((resolve, reject) => {
+      fetch(`${endpoint}/user.json?orderBy="uid"&equalTo="${uid}"`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const users = Object.values(data);
+          resolve(users.length > 0 ? users[0] : null); //this instead returns an array because the 0 position is just the first object and we return that object as an array.
+        })
+        .catch(reject);
+    });
+  
+
 const createUser = (payload) =>
     new Promise((resolve, reject) => {
         fetch(`${endpoint}/user.json`, {
@@ -55,4 +72,4 @@ const updateUser = (payload) =>
         .catch(reject);
     })
 
-export {createUser, getAllUser, updateUser}
+export {createUser, getAllUser, updateUser, getSingleUserByUid}
