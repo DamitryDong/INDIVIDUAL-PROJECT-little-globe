@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { createPost, updatePost } from "@/api/postApi";
 import { Button } from "flowbite-react";
 import Gemini from "./Gemini";
+import { useAuth } from "@/utils/context/authContext";
 
 export function LocationSearchNPost({ clickedLocation }) {
   const [imageUrl, setImageFile] = useState(null);
@@ -12,6 +13,7 @@ export function LocationSearchNPost({ clickedLocation }) {
   const [locationName, setLocationName] = useState("");
   const [caption, setCaption] = useState("");
 
+  const {user} = useAuth();
 
   useEffect(() => { //this is used to reset the image to true when after the image Url is change so we can check the next image
     setIsValidImage(true);
@@ -28,6 +30,7 @@ export function LocationSearchNPost({ clickedLocation }) {
       locationName,
       caption,
       imageUrl,
+      uid: user.uid,
     };
     createPost(payload).then((newPost) => { 
       const firebasekeypayload = {

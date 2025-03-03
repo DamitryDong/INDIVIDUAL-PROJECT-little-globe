@@ -5,13 +5,13 @@ function ImageCards({ cardobj }) {
     <Card
       className="max-w-sm"
       imgAlt="imagenamegoeshere"
-      imgSrc={cardobj.imgUrl}
+      imgSrc={cardobj.imageUrl}
     >
       <h3 className="font-semibold text-lg text-gray-800 dark:text-gray-100">
-        {cardobj.name}
+        {cardobj.locationName}
       </h3>
       <p className="font-normal text-gray-700 dark:text-gray-400">
-        {cardobj.description}
+        {cardobj.caption}
       </p>
     </Card>
   );

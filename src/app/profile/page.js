@@ -71,7 +71,7 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="flex flex-row justify-center pt-[4%] gap-[5%] h-screen dark:bg-gray-800 dark:text-white mt-[10%]">
+        <div className="flex flex-row justify-center pt-[4%] gap-[5%] h-screen dark:bg-gray-800 dark:text-white pt-[10%]">
 
             <ToastContainer/> 
             {/* this is the toast container where the message will pop up */}

@@ -8,6 +8,7 @@ import { LocationSearchNPost } from "@/componenets/LocationSearch";
 import { getAllpost } from "@/api/postApi";
 import { getSingleUserByUid } from "@/api/userApi";
 import { useAuth } from "@/utils/context/authContext";
+import { Badge } from "flowbite-react";
 
 export default function Home() {
   const [posts, setPosts] = useState([])
@@ -52,9 +53,14 @@ export default function Home() {
           <CardSection postObj={posts} />
         </SlideoutFrame>
 
-      {/* Middle Section (Map) */}
+      {/* Middle Section (Map) and the color dictionary thing*/}
       <div className="w-full h-screen bg-white dark:bg-gray-800">
         <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
+      </div>
+      <div className="z-30 absolute right-[4%] top-[10%]">
+      <Badge className="mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" >Others Post</Badge>
+      <Badge className="mb-[4%] bg-[#008000] text-white dark:text-black dark:bg-[#008000] shadow-md opacity-75" >Selected Location</Badge>
+      <Badge className="mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75">Yours Post</Badge>
       </div>
 
       {/* Right Section */}
