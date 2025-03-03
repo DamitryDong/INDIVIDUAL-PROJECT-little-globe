@@ -30,7 +30,7 @@ export default function Home() {
 
       {/* Middle Section (Map) */}
       <div className="w-full h-screen bg-white dark:bg-gray-800">
-        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} />
+        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
       </div>
 
       {/* Right Section */}

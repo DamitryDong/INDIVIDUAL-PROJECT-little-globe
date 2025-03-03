@@ -38,7 +38,7 @@ export function LocationSearch({ clickedLocation }) {
   
 
   return (
-    <div className="flex max-w-md flex-col gap-4 bg-white p-4 rounded-lg dark:bg-gray-800 dark:text-white h-screen">
+    <div className="flex max-w-md flex-col gap-2 bg-white p-4 rounded-lg dark:bg-gray-800 dark:text-white h-screen">
 
       {/* import the ai */}
 
@@ -58,8 +58,8 @@ export function LocationSearch({ clickedLocation }) {
 
       {/* Location Name */}
       <div>
-        <Label htmlFor="location-name" value="Location Name" />
-        <TextInput id="location-name" type="text" sizing="sm" placeholder="New York City" value={locationName} onChange={(e) => setLocationName(e.target.value)}/>
+        <Label htmlFor="location-name" value="Where are you?" />
+        <TextInput id="location-name" type="text" sizing="md" placeholder="New York City" value={locationName} onChange={(e) => setLocationName(e.target.value)}/>
       </div>
 
       {/* Caption */}
@@ -70,7 +70,7 @@ export function LocationSearch({ clickedLocation }) {
 
       {/* Image input area to displaya*/}
       <div
-        className="border-2 border-dashed border-gray-300 p-4 text-center rounded-lg cursor-pointer"
+        className="border-2 border-dashed border-gray-300 p-4 mt-4 text-center rounded-lg cursor-pointer"
       >
         <Label htmlFor="image-upload" value="Put an Image Url" />
         <TextInput id="image-Url-Input" onChange={(e) => setImageFile(e.target.value)} className="mt-2" />

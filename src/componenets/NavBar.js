@@ -4,10 +4,13 @@ import { signOutUser } from '@/utils/auth';
 import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
 import { useAuth } from '@/utils/context/authContext';
 import { useEffect, useState } from 'react';  
+import { useTheme } from '@/utils/context/ThemeContext';
 
 
-function MyNavbar( {handleMapDarkMode} ) {
+function MyNavbar() {
     const [imageUrl, setImageUrl] = useState(null);
+    
+    const { toggleTheme } = useTheme();
     
     const { user } = useAuth()
 
@@ -24,8 +27,8 @@ function MyNavbar( {handleMapDarkMode} ) {
   return (
         <Navbar>
           <Navbar.Brand href="/">
-            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full" alt="Logo"/>
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Little Globe</span>
+            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full z-10" alt="Logo"/>
+            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white z-10">Little Globe</span>
           </Navbar.Brand>
           <div className="flex md:order-2 z-20">
             <Dropdown
@@ -50,15 +53,18 @@ function MyNavbar( {handleMapDarkMode} ) {
             </Dropdown>
 
             <Flowbite>
-                <DarkThemeToggle onClick={() => handleMapDarkMode()}/>
+                <DarkThemeToggle onClick={toggleTheme}/>
             </Flowbite>
 
             <Navbar.Toggle />
           </div>
+
+          <div className='z-10'>
           <Navbar.Collapse>
-            <Navbar.Link href="/">Home</Navbar.Link>
-            <Navbar.Link href="#">NADADADA</Navbar.Link>
+            <Navbar.Link href="/"><strong>Home</strong></Navbar.Link>
+            <Navbar.Link href="#"><strong>something</strong></Navbar.Link>
           </Navbar.Collapse>
+          </div>
         </Navbar>
   );
 }
