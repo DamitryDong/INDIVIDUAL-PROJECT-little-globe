@@ -41,9 +41,25 @@ const createPost = (payload) =>
             .catch(reject);
     });
 
+const updatePost = (payload) => 
+    new Promise ((resolve,reject) => {
+        fetch(`${endpoint}/posts/${payload.firebaseKey}.json`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        }) 
+        .then((response) => response.json())
+        .then((data) => {resolve(data);})
+        .catch(reject);
+    })
+    
+    
+
 const deletePost = (id) =>
     new Promise((resolve, reject) => {
-        fetch(`${endpoint}/bookings/${id}`, {
+        fetch(`${endpoint}/posts/${id}`, {
             method: 'DELETE',
             headers: {
               'Content-Type': 'application/json',
@@ -58,4 +74,4 @@ const deletePost = (id) =>
             .catch(reject);
         }); 
 
-export { getAllpost, createPost, deletePost };
+export { getAllpost, createPost, deletePost, updatePost };
