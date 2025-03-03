@@ -41,7 +41,7 @@ function MyNavbar() {
               <Dropdown.Header>
                 <span className="block text-sm">{user.email}</span>
               </Dropdown.Header>
-              <Dropdown.Item><strong>Profile</strong></Dropdown.Item>
+              <Dropdown.Item href="/profile"><strong>Profile</strong></Dropdown.Item>
               <Dropdown.Divider />
               <div onClick={signOutUser}>
                 <Dropdown.Item><strong>Sign out</strong></Dropdown.Item>
