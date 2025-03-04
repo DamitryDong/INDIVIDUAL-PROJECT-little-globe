@@ -6,7 +6,7 @@ import ImageCards from "./ImageCards";
 
 export default function CardSection({ postObj }) {
   return (
-    <div className="max-h-[300px]">
+    <div>
       {postObj.length > 0 ? (
         postObj.map((post) => (
           <ImageCards key={post.firebaseKey} cardobj={post} />

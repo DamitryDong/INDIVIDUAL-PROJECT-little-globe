@@ -21,9 +21,13 @@ export function LocationSearchNPost({ clickedLocation, reloadmap }) {
   }, [imageUrl]);
 
   if (!clickedLocation || !clickedLocation.longitude || !clickedLocation.latitude) {
-    return <div className="dark:text-white">Double right click any location on the map to set a post!</div>;
+    return (
+      <div className=" p-4 text-center text-gray-800 dark:text-gray-100 font-semibold">
+        Double click anywhere on the map to set a post!
+      </div>
+    );
   }
-
+  
   const handleSubmit = () => {
     const payload = {
       longitude: clickedLocation.longitude,

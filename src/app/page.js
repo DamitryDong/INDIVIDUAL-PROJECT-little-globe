@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row justify-center bg-white h-screen">
       {/* Left Section */}
-        <SlideoutFrame buttonName="Discover" position="left" autoClose={true} backgroundTrans="bg-transparent">
+        <SlideoutFrame buttonName="Discover" position="left" autoClose={true} backgroundTrans="bg-transparent" widthChange="w-[30%] xs:w-[100%]">
           <CardSection postObj={posts} />
         </SlideoutFrame>
 
@@ -60,7 +60,7 @@ export default function Home() {
       <div className={darkTheme ? "w-full h-screen bg-gray-800 text-white" : "w-full h-screen bg-white text-black"}>
         <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
       </div>
-      <div className="z-30 absolute right-[4%] top-[10%]">
+      <div className="z-30 absolute left-[4%] bottom-[10%]">
       <Button size="xs" className="mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" >Others Post</Button>
       <Button size="xs" className="mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75">Yours Post</Button>
       <Button size="xs" className="mb-[4%] bg-[#008000] text-white dark:text-black dark:bg-[#008000] shadow-md opacity-75" >All Post</Button>

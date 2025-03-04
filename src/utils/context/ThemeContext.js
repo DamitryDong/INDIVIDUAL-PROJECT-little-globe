@@ -7,11 +7,15 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-  // Check if a theme is saved in localStorage and set the initial state
+
+  const [darkTheme, setDarkTheme] = useState();
+
+  useEffect(() => {
+      // Check if a theme is saved in localStorage and set the initial state
   const storedTheme = localStorage.getItem('theme');
   const initialTheme = storedTheme ? storedTheme === 'dark' : false;
-
-  const [darkTheme, setDarkTheme] = useState(initialTheme);
+  setDarkTheme(initialTheme)
+  }, [])
 
   useEffect(() => {
     // Toggle the dark mode class on the root element
