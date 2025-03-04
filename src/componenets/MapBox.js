@@ -6,7 +6,6 @@ import { useTheme } from "@/utils/context/ThemeContext";
 import FadeIn from "./GsapAnimation/MapLoad";
 import ScaleOpenAnimation from "./GsapAnimation/MapFirstLoad";
 import { useAuth } from "@/utils/context/authContext";
-import { userAgent } from "next/server";
 
 // Securely load Mapbox API token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
@@ -49,13 +48,25 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
         if (post.uid === user.uid) {
           new mapboxgl.Marker({color: "red"})
           .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .setPopup(new mapboxgl.Popup().setHTML(
+            `
+            <img src=${post.imageUrl}  style="width: 150px; height: auto; border-radius: 8px;"></img>
+            <h1>${post.locationName}</h1>
+            <p>${post.caption}</p>
+            `
+          ))
           .addTo(map);
         }
         else {
           new mapboxgl.Marker()
           .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .setPopup(new mapboxgl.Popup().setHTML(
+            `
+            <img src=${post.imageUrl}  style="width: 150px; height: auto; border-radius: 8px;"></img>
+            <h1>${post.locationName}</h1>
+            <p>${post.caption}</p>
+            `
+          ))
           .addTo(map);
         }
       }

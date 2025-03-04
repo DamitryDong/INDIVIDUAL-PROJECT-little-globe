@@ -7,11 +7,12 @@ import { Button } from "flowbite-react";
 import Gemini from "./Gemini";
 import { useAuth } from "@/utils/context/authContext";
 
-export function LocationSearchNPost({ clickedLocation }) {
+export function LocationSearchNPost({ clickedLocation, reloadmap }) {
   const [imageUrl, setImageFile] = useState(null);
   const [isValidImage, setIsValidImage] = useState(true);
   const [locationName, setLocationName] = useState("");
   const [caption, setCaption] = useState("");
+  const [reloadstate, setreloadstate] = useState(true)
 
   const {user} = useAuth();
 
@@ -38,7 +39,8 @@ export function LocationSearchNPost({ clickedLocation }) {
       }
       updatePost(firebasekeypayload)
     }). then(() => {
-      window.location.reload();
+      reloadmap(reloadstate);
+      setreloadstate(!reloadstate);
     })
   }
   
