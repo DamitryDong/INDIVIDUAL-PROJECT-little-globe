@@ -50,9 +50,12 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
           .setLngLat([post.longitude, post.latitude])
           .setPopup(new mapboxgl.Popup().setHTML(
             `
-            <img src=${post.imageUrl}  style="width: 150px; height: auto; border-radius: 8px;"></img>
-            <h1>${post.locationName}</h1>
-            <p>${post.caption}</p>
+            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
+              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
+              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+            </div>
+
             `
           ))
           .addTo(map);
@@ -62,9 +65,12 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
           .setLngLat([post.longitude, post.latitude])
           .setPopup(new mapboxgl.Popup().setHTML(
             `
-            <img src=${post.imageUrl}  style="width: 150px; height: auto; border-radius: 8px;"></img>
-            <h1>${post.locationName}</h1>
-            <p>${post.caption}</p>
+            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
+              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
+              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+            </div>
+
             `
           ))
           .addTo(map);

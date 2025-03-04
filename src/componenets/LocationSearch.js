@@ -40,7 +40,7 @@ export function LocationSearchNPost({ clickedLocation, reloadmap }) {
       updatePost(firebasekeypayload)
     }). then(() => {
       reloadmap(reloadstate);
-      setreloadstate(!reloadstate);
+      setreloadstate(!reloadstate)
     })
   }
   
