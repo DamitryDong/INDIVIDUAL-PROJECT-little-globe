@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row justify-center bg-white h-screen">
       {/* Left Section */}
-        <SlideoutFrame buttonName="Discover" position="left" autoClose={true} backgroundTrans="bg-transparent" widthChange="w-[30%] xs:w-[100%]">
+        <SlideoutFrame buttonName="\discoverIcon.png" position="left" autoClose={true} backgroundTrans="bg-transparent" widthChange="w-[30%] xs:w-[100%]">
           <CardSection postObj={posts} />
         </SlideoutFrame>
 
@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       {/* Right Section */}
-      <SlideoutFrame buttonName="Post" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg">
+      <SlideoutFrame buttonName="\newPostIcon.png" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg">
         <LocationSearchNPost clickedLocation={clickedLocation} reloadmap={setReloadMap} />
       </SlideoutFrame>
     </div>

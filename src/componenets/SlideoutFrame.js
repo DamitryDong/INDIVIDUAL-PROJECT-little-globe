@@ -11,11 +11,11 @@ export function SlideoutFrame({ children, buttonName, position, autoClose = fals
 
   return (
     <>
-      <div className={`items-center justify-center absolute top-1/2 ${buttonPosition} z-30`}>
-        <Button size="sm" pill onClick={() => setIsOpen(true)}>{buttonName}
-        </Button>
-      </div>
-
+    <div className={`items-center justify-center absolute top-1/2 ${buttonPosition} z-30`}>
+      <Button className="rounded-full w-13 h-13 bg-transparent dark:bg-transparent" onClick={() => setIsOpen(true)}>
+        <img src={buttonName} className="w-6 h-auto" alt="button icon" />
+      </Button>
+    </div>
       {/* Drawer with hidden overlay & manual close button */}
       <Drawer
         open={isOpen}
