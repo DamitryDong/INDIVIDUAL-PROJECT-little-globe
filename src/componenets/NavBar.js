@@ -14,6 +14,10 @@ function MyNavbar() {
 
   useEffect(() => {
     setImageUrl(user.photoURL || '/defaultProfile.jpeg');
+
+    if (darkTheme) {
+      
+    }
   }, [user.photoURL]);
 
   return (
@@ -54,7 +58,7 @@ function MyNavbar() {
               <img src="/homepageIcon.png" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="Home" />
             </Button>
           </Link>
-          <Link href="#" passHref>
+          <Link href="/myPost" passHref>
             <Button className='bg-transparent border-transparent dark:bg-transparent dark:border-transparent' color='gray'>
               <img src="/myImageIcon.png" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="My Images" />
             </Button>

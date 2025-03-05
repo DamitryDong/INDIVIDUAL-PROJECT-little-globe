@@ -2,7 +2,7 @@
 
 import { Button, Checkbox, Label, TextInput, Avatar } from "flowbite-react";
 import { useAuth } from "@/utils/context/authContext";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSingleUserByUid, createUser, updateUser } from "@/api/userApi";
 import { ToastContainer, toast } from "react-toastify";
 import { useTheme } from "@/utils/context/ThemeContext";

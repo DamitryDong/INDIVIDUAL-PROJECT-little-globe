@@ -24,6 +24,21 @@ const getAllpost = () =>
         .catch(reject)
 });
 
+const getPostByUid = (uid) =>
+    new Promise((resolve, reject) => {
+      fetch(`${endpoint}/posts.json?orderBy="uid"&equalTo="${uid}"`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data ? Object.values(data) : []); // Return all posts instead of just the first one
+        })
+        .catch(reject);
+    });
+  
 const createPost = (payload) =>
     new Promise((resolve, reject) => {
         fetch(`${endpoint}/posts.json`, {
@@ -57,21 +72,22 @@ const updatePost = (payload) =>
     
     
 
-const deletePost = (id) =>
-    new Promise((resolve, reject) => {
-        fetch(`${endpoint}/posts/${id}`, {
-            method: 'DELETE',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-            .then((response) => {
-              if (response.ok) {
-                return response.status === 204 ? resolve({}) : response.json().then(resolve);
-              }
-              return reject(new Error(`Failed to delete booking: ${response.status}`));
-            })
-            .catch(reject);
-        }); 
+    const deletePost = (firebaseKey) =>
+        new Promise((resolve, reject) => {
+            fetch(`${endpoint}/posts/${firebaseKey}.json`, { 
+                method: 'DELETE',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              })
+                .then((response) => {
+                  if (response.ok) {
+                    return response.status === 204 ? resolve({}) : response.json().then(resolve);
+                  }
+                  return reject(new Error(`Failed to delete Post: ${response.status}`));
+                })
+                .catch(reject);
+            }); 
+    
 
-export { getAllpost, createPost, deletePost, updatePost };
+export { getAllpost, createPost, deletePost, updatePost, getPostByUid };
