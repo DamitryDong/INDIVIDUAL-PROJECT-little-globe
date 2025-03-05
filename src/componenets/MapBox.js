@@ -6,7 +6,6 @@ import { useTheme } from "@/utils/context/ThemeContext";
 import FadeIn from "./GsapAnimation/MapLoad";
 import ScaleOpenAnimation from "./GsapAnimation/MapFirstLoad";
 import { useAuth } from "@/utils/context/authContext";
-import { userAgent } from "next/server";
 
 // Securely load Mapbox API token
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
@@ -49,13 +48,31 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
         if (post.uid === user.uid) {
           new mapboxgl.Marker({color: "red"})
           .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .setPopup(new mapboxgl.Popup().setHTML(
+            `
+            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
+              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
+              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+            </div>
+
+            `
+          ))
           .addTo(map);
         }
         else {
           new mapboxgl.Marker()
           .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(`<h1>${post.locationName}</h1><p>${post.caption}</p>`))
+          .setPopup(new mapboxgl.Popup().setHTML(
+            `
+            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
+              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
+              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+            </div>
+
+            `
+          ))
           .addTo(map);
         }
       }
@@ -108,7 +125,6 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
       color: 'green'  // Change the marker color to red this is buuild in class style from mapgl
     })
         .setLngLat([selectedCordinates.longitude, selectedCordinates.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML(`<h1>New Post Location!</h1>`))
         .addTo(mapRef.current);
 
     // stores the marker in ref so we can remove it with the previous if sttatment

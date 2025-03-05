@@ -1,19 +1,13 @@
-import { Card, Avatar, Tooltip, Button } from "flowbite-react";
+import { Card, Tooltip, Button } from "flowbite-react";
 import { useTheme } from "@/utils/context/ThemeContext";
-import { getSingleUserByUid } from "@/api/userApi";
-import { useEffect, useState } from "react";
+import { deletePost } from "@/api/postApi";
 
-function ImageCards({ cardobj }) {
+function MyImageCards({ cardobj }) {
   const { darkTheme } = useTheme();
-  const [author, setAuthor] = useState()
 
-  useEffect(() => {
-    getSingleUserByUid(cardobj.uid).then((user) => {
-      if (user) {
-        setAuthor(user)
-      }
-    })
-  }, [cardobj])
+  const handleDelete = () => {
+    deletePost(cardobj.firebaseKey).then(console.log("Yayy deleted!!"))
+  }
 
   return (
       <Card
@@ -32,14 +26,11 @@ function ImageCards({ cardobj }) {
           </p>
         </div>
 
-        {/* AVATAR SECTION ON THE CARD */}
-        <div
-          className={`absolute right-0 flex flex-row items-center p-1 rounded-md shadow-md ${
-            darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"
-          }`}
-        >
-          <span className="mr-2">{author?.username || "Unknown"}</span>
-          <Avatar rounded img={author?.photoURL || "/defaultProfile.jpeg"} alt="Post Author" />
+        {/* Delete button */}
+        <div>
+            <Button color="failure" onClick={handleDelete} className="absolute right-0" size="xs">
+                Delete
+            </Button>
         </div>
 
         {/* THE BUTTON TO FIND LOCATION */}
@@ -54,5 +45,5 @@ function ImageCards({ cardobj }) {
   );
 }
 
-export default ImageCards;
+export default MyImageCards;
 

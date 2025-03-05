@@ -2,9 +2,10 @@
 
 import { Button, Checkbox, Label, TextInput, Avatar } from "flowbite-react";
 import { useAuth } from "@/utils/context/authContext";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getSingleUserByUid, createUser, updateUser } from "@/api/userApi";
 import { ToastContainer, toast } from "react-toastify";
+import { useTheme } from "@/utils/context/ThemeContext";
 
 export default function ProfilePage() {
     const [userInfo, setUserInfo] = useState({ username: '', photoURL: '' }); // Initialize with default values, you can also leave it empty and set the value later what eva
@@ -13,6 +14,7 @@ export default function ProfilePage() {
     const [refresh, doRefresh] = useState(true)
 
     const { user } = useAuth();
+    const { darkTheme } = useTheme();
 
     useEffect(() => {
         if (user?.uid) {
@@ -71,8 +73,9 @@ export default function ProfilePage() {
     }
 
     return (
-        <div className="flex flex-row justify-center pt-[4%] gap-[5%] h-screen dark:bg-gray-800 dark:text-white pt-[10%]">
-
+        <div className={`flex flex-row justify-center gap-[5%] h-screen pt-[10%] ${
+        darkTheme ? "bg-gray-800 text-white" : "bg-white text-black"
+        }`}>
             <ToastContainer/> 
             {/* this is the toast container where the message will pop up */}
 

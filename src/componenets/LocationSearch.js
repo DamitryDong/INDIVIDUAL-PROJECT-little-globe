@@ -7,11 +7,12 @@ import { Button } from "flowbite-react";
 import Gemini from "./Gemini";
 import { useAuth } from "@/utils/context/authContext";
 
-export function LocationSearchNPost({ clickedLocation }) {
-  const [imageUrl, setImageFile] = useState(null);
+export function LocationSearchNPost({ clickedLocation, reloadmap }) {
+  const [imageUrl, setImageFile] = useState("");
   const [isValidImage, setIsValidImage] = useState(true);
   const [locationName, setLocationName] = useState("");
   const [caption, setCaption] = useState("");
+  const [reloadstate, setreloadstate] = useState(true)
 
   const {user} = useAuth();
 
@@ -20,9 +21,13 @@ export function LocationSearchNPost({ clickedLocation }) {
   }, [imageUrl]);
 
   if (!clickedLocation || !clickedLocation.longitude || !clickedLocation.latitude) {
-    return <div className="dark:text-white">Double right click any location on the map to set a post!</div>;
+    return (
+      <div className=" p-4 text-center text-gray-800 dark:text-gray-100 font-semibold">
+        Double click anywhere on the map to set a post!
+      </div>
+    );
   }
-
+  
   const handleSubmit = () => {
     const payload = {
       longitude: clickedLocation.longitude,
@@ -38,7 +43,12 @@ export function LocationSearchNPost({ clickedLocation }) {
       }
       updatePost(firebasekeypayload)
     }). then(() => {
-      window.location.reload();
+      reloadmap(reloadstate);
+      setreloadstate(!reloadstate)
+
+      setImageFile("")
+      setLocationName("")
+      setCaption("")
     })
   }
   
@@ -65,13 +75,13 @@ export function LocationSearchNPost({ clickedLocation }) {
       {/* Location Name */}
       <div>
         <Label htmlFor="location-name" value="Where are you?" />
-        <TextInput id="location-name" type="text" sizing="md" placeholder="New York City" value={locationName} onChange={(e) => setLocationName(e.target.value)}/>
+        <TextInput id="location-name" type="text" sizing="md" placeholder="New York City" value={locationName} onChange={(e) => setLocationName(e.target.value)} required/>
       </div>
 
       {/* Caption */}
       <div>
         <Label htmlFor="caption" value="Caption" />
-        <TextInput id="caption" type="text" sizing="lg" placeholder="A lovely trip to the city" value={caption} onChange={(e) => setCaption(e.target.value)} />
+        <TextInput id="caption" type="text" sizing="lg" placeholder="A lovely trip to the city" value={caption} onChange={(e) => setCaption(e.target.value)} required/>
       </div>
 
       {/* Image input area to displaya*/}
@@ -79,7 +89,7 @@ export function LocationSearchNPost({ clickedLocation }) {
         className="border-2 border-dashed border-gray-300 p-4 mt-4 text-center rounded-lg cursor-pointer"
       >
         <Label htmlFor="image-upload" value="Put an Image Url" />
-        <TextInput id="image-Url-Input" onChange={(e) => setImageFile(e.target.value)} className="mt-2" />
+        <TextInput id="image-Url-Input" value={imageUrl} onChange={(e) => setImageFile(e.target.value)} className="mt-2" />
         <p className="text-gray-500 text-sm mt-2 cursor-default">add a cute image!</p>
       </div>
 

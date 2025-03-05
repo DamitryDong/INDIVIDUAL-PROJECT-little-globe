@@ -2,7 +2,7 @@
 
 /* eslint-disable react/jsx-key */
 
-import ImageCards from "./ImageCards";
+import MyImageCards from "./MyImageCards";
 
 export default function CardSection({ postObj }) {
   return (
@@ -10,7 +10,7 @@ export default function CardSection({ postObj }) {
       {postObj ? (
         postObj.map((post) =>
           post.firebaseKey ? (
-            <ImageCards key={post.firebaseKey} cardobj={post} />
+            <MyImageCards key={post.firebaseKey} cardobj={post} />
           ) : null
         )
       ) : (

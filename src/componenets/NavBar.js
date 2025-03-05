@@ -1,68 +1,77 @@
 'use client';
 
 import { signOutUser } from '@/utils/auth';
-import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite } from "flowbite-react";
+import { Avatar, Dropdown, Navbar, DarkThemeToggle, Flowbite, Button } from "flowbite-react";
 import { useAuth } from '@/utils/context/authContext';
 import { useEffect, useState } from 'react';  
 import { useTheme } from '@/utils/context/ThemeContext';
-
+import Link from 'next/link';
 
 function MyNavbar() {
-    const [imageUrl, setImageUrl] = useState(null);
-    
-    const { toggleTheme } = useTheme();
-    
-    const { user } = useAuth()
+  const [imageUrl, setImageUrl] = useState(null);
+  const { toggleTheme, darkTheme } = useTheme(); 
+  const { user } = useAuth();
 
-    useEffect(() => { //did this because sometimes the user image to be broken or there's not a user image
-      if (!user.photoURL) {
-        const defaultImageReplacement = '/defaultProfile.jpeg';
-        setImageUrl(defaultImageReplacement);
-      }
-      else {
-        setImageUrl(user.photoURL);
-      }
-    }, [user.photoURL]);
+  useEffect(() => {
+    setImageUrl(user.photoURL || '/defaultProfile.jpeg');
+
+    if (darkTheme) {
+      
+    }
+  }, [user.photoURL]);
 
   return (
-        <Navbar>
-          <Navbar.Brand href="/">
-            <img src="/icon.png" className="mr-6 h-9 sm:h-9 rounded-full z-10" alt="Logo"/>
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white z-10">Little Globe</span>
-          </Navbar.Brand>
-          <div className="flex md:order-2 z-20">
-            <Dropdown
-              arrowIcon={false}
-              inline
-              label={
-                <Avatar alt="User Image" img={imageUrl} rounded />
-              }
-            >
-              <Dropdown.Header>
-                <span className="block text-sm">{user.email}</span>
-              </Dropdown.Header>
-              <Dropdown.Item href="/profile"><strong>Profile</strong></Dropdown.Item>
-              <Dropdown.Divider />
-              <div onClick={signOutUser}>
-                <Dropdown.Item><strong>Sign out</strong></Dropdown.Item>
-              </div>
-              
-            </Dropdown>
+    <Navbar className={`absolute w-full ${darkTheme ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
+      <Navbar.Brand href="/" className="flex items-center gap-3 z-30">
+        <img src="/icon.png" className="h-10 w-10 rounded-full" alt="Logo"/>
+        <span className="text-xl font-semibold dark:text-white">Little Globe</span>
+      </Navbar.Brand>
 
-            <Flowbite>
-                <DarkThemeToggle onClick={toggleTheme}/>
-            </Flowbite>
+      {/* Right Side */}
+      <div className="flex items-center space-x-6 z-30">
+        {/* Theme Toggle */}
+        <Flowbite>
+          <DarkThemeToggle onClick={toggleTheme} />
+        </Flowbite>
 
-            <Navbar.Toggle />
+        {/* User Dropdown */}
+        <Dropdown arrowIcon={false} inline label={<Avatar alt="User Image" img={imageUrl} rounded />}>
+          <Dropdown.Header>
+            <span className="block text-sm">{user.email}</span>
+          </Dropdown.Header>
+          <Dropdown.Item href="/profile"><strong>Profile</strong></Dropdown.Item>
+          <Dropdown.Divider />
+          <div onClick={signOutUser}>
+            <Dropdown.Item><strong>Sign out</strong></Dropdown.Item>
           </div>
+        </Dropdown>
 
-          <div className='z-10'>
-          <Navbar.Collapse>
-            <Navbar.Link href="/"><strong>Home</strong></Navbar.Link>
-            <Navbar.Link href="#"><strong>something</strong></Navbar.Link>
-          </Navbar.Collapse>
-          </div>
-        </Navbar>
+        {/* Navbar Toggle Button (Mobile) */}
+        <Navbar.Toggle />
+      </div>
+
+      {/* Navigation Links , SOMETHING I DIDNT KNOW: you jave the wrap a button in link if ur using flowbite navbar bc it doesnt register normal button affects*/}
+      <Navbar.Collapse> 
+        <div className="flex gap-4 text-lg z-30">
+          <Link href="/" passHref>
+            <Button className='bg-transparent border-transparent dark:bg-transparent dark:border-transparent' color='gray'>
+              <img src="/homepageIcon.png" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="Home" />
+            </Button>
+          </Link>
+          <Link href="/myPost" passHref>
+            <Button className='bg-transparent border-transparent dark:bg-transparent dark:border-transparent' color='gray'>
+              <img src="/myImageIcon.png" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="My Images" />
+            </Button>
+          </Link>
+          <Link href="#" passHref>
+            <Button className='bg-transparent border-transparent dark:bg-transparent dark:border-transparent' color='gray'>
+              <img src="/friendListIcon.webp" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="Friends" />
+            </Button>
+          </Link>
+        </div>
+      </Navbar.Collapse>
+
+    </Navbar>
   );
 }
 
