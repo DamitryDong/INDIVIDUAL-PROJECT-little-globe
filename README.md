@@ -7,7 +7,7 @@ https://www.loom.com/share/145b30c476854f15b8e74763130faac9?sid=f49af19a-c63c-48
 This is a social media application that allows users to share posts, integrate locations on a map, and interact with other users. The app features a personalized profile, dark mode for customization, and the ability to explore other users' posts in a scrolling format. Users can create, read, update, and delete their own posts while viewing others' posts as well.
 
 ## Wireframes/Prototype
-(https://www.loom.com/share/145b30c476854f15b8e74763130faac9?sid=a9ffe4ec-8fe1-4a9e-bc7b-2564f98748bf)]
+https://www.figma.com/design/VTxsOZgFLUaqY8zsjLxIdm/Little-Globe?node-id=0-1&p=f&t=NFSAuked3PdFRZ8y-0
 
 ## Live Deployed Project
 [WORK IN PROGRESS]
