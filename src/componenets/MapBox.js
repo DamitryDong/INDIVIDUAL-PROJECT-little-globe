@@ -51,7 +51,7 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
           .setPopup(new mapboxgl.Popup().setHTML(
             `
             <div class="flex flex-col items-center justify-start text-center overflow-hidden">
-              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <img src="${post.imageUrl}" style="width: 150px; height: auto; border-radius: 2px; margin-bottom: 8px" />
               <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
               <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
             </div>
@@ -66,7 +66,7 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
           .setPopup(new mapboxgl.Popup().setHTML(
             `
             <div class="flex flex-col items-center justify-start text-center overflow-hidden">
-              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+              <img src="${post.imageUrl}" style="width: 150px; height: auto; border-radius: 2px; margin-bottom: 8px" />
               <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
               <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
             </div>

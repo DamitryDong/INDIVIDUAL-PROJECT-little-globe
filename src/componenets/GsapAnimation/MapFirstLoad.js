@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-const ScaleOpenAnimation = ({ children, duration = 5, delay = 1 }) => {
+const ScaleOpenAnimation = ({ children, duration = 3, delay = 1 }) => {
   const ref = useRef(null); // only runs once
 
   useEffect(() => {
