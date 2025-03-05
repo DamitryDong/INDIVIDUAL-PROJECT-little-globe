@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Little Globe
 
-## Getting Started
+## Current Loom (WIP)
+[[Current Loom]
+](https://www.loom.com/share/014f3f37674d4656a754c456f40167b5?sid=21827c61-7775-4d5c-9c02-89473cbc81f6)
+## Project Overview
+This is a social media application that allows users to share posts, integrate locations on a map, and interact with other users. The app features a personalized profile, dark mode for customization, and the ability to explore other users' posts in a scrolling format. Users can create, read, update, and delete their own posts while viewing others' posts as well.
 
-First, run the development server:
+## Wireframes/Prototype
+[[Link to Wireframes/Prototype](https://www.figma.com/design/VTxsOZgFLUaqY8zsjLxIdm/Little-Globe?node-id=0-1&p=f&t=uUNGsABIDBjHoaKy-0)]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Live Deployed Project
+[WORK IN PROGRESS]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Board
+[[Link to Project Board]](https://github.com/users/DamitryDong/projects/1)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## User Description
+This app is designed for users who want to share pictures, locations, and captions with a community. It is suitable for people who enjoy social networking and exploring posts in a simple, interactive format. Users can also personalize their experience by setting up profiles.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+- **Location Integration**: Add location tags to your posts, making it easy to share where you are.
+- **CRUD Operations**: Full Create, Read, Update, and Delete functionality on your posts.
+- **Explore Posts**: Scroll through and view posts from other users.
+- **Dark Mode**: Switch between light and dark themes for personalized UI.
+- **User Profiles**: Set up and customize a profile page with your personal information and posts.
