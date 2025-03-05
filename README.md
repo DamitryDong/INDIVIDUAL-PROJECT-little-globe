@@ -1,7 +1,8 @@
 # Little Globe
 
 ## Current Loom (WIP)
-(https://www.loom.com/share/014f3f37674d4656a754c456f40167b5?sid=21827c61-7775-4d5c-9c02-89473cbc81f6)
+https://www.loom.com/share/145b30c476854f15b8e74763130faac9?sid=f49af19a-c63c-480e-ba1e-76864b707713
+
 ## Project Overview
 This is a social media application that allows users to share posts, integrate locations on a map, and interact with other users. The app features a personalized profile, dark mode for customization, and the ability to explore other users' posts in a scrolling format. Users can create, read, update, and delete their own posts while viewing others' posts as well.
 
