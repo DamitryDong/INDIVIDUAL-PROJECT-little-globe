@@ -14,10 +14,6 @@ function MyNavbar() {
 
   useEffect(() => {
     setImageUrl(user.photoURL || '/defaultProfile.jpeg');
-
-    if (darkTheme) {
-      
-    }
   }, [user.photoURL]);
 
   return (

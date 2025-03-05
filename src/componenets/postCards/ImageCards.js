@@ -19,11 +19,11 @@ function ImageCards({ cardobj }) {
       <Card
         imgAlt="Post Image"
         imgSrc={cardobj.imageUrl}
-        className={`${darkTheme ? "bg-slate-800" : "bg-white "} mt-6`} 
+        className={`${darkTheme ? "!bg-slate-800" : "!bg-white "} mt-4`} 
       >
-        <div>
+        <div className=" p-4 border-t-4">
 
-        <div className={`${darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"} p-4`}>
+        <div className={`${darkTheme ? "!bg-slate-800 text-gray-300" : "!bg-white !text-gray-800"} p-4`}>
           <p className="font-semibold text-lg">
             {cardobj.locationName}
           </p>
@@ -33,21 +33,22 @@ function ImageCards({ cardobj }) {
         </div>
 
         {/* AVATAR SECTION ON THE CARD */}
-        <div
-          className={`absolute right-0 flex flex-row items-center p-1 rounded-md shadow-md ${
-            darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"
-          }`}
-        >
-          <span className="mr-2">{author?.username || "Unknown"}</span>
-          <Avatar rounded img={author?.photoURL || "/defaultProfile.jpeg"} alt="Post Author" />
-        </div>
-
-        {/* THE BUTTON TO FIND LOCATION */}
-        <Tooltip content="Find Post" arrow={false}>
-          <Button className="absolute left-0" size="xs" outline gradientDuoTone="cyanToBlue">
-          <img src="/locationIcon.png" className="w-4 h-4 dark:border-white" alt="Location Icon" />
-          </Button>
-        </Tooltip>
+          <div
+            className={`p-1 rounded-md flex flex-row items-center justify-center gap-4 ${
+              darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"
+            }`}
+          >
+            <Tooltip content={author?.username} arrow={false}>
+            <Avatar rounded img={author?.photoURL || "/defaultProfile.jpeg"} alt="Post Author" />
+            </Tooltip>
+                    {/* THE BUTTON TO FIND LOCATION */}
+          <Tooltip content="Find Post" arrow={false}>
+            <Button className="" size="xs">
+            <img src="/locationIcon.png" className="w-4 h-4 invert" alt="Location Icon" />
+            </Button>
+          </Tooltip>
+          
+          </div>
 
         </div>
       </Card>

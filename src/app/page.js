@@ -2,6 +2,7 @@
 
 import React, {useState, useEffect} from "react";
 import { SlideoutFrame } from "@/componenets/SlideoutFrame";
+import { SlideoutFrameforDiscovery } from "@/componenets/SlideoutforDiscover";
 import MapBoxMap from "@/componenets/MapBox";
 import CardSection from "@/componenets/postCards/CardsSection";
 import { LocationSearchNPost } from "@/componenets/LocationSearch";
@@ -16,12 +17,17 @@ export default function Home() {
   const [clickedLocation, setClickedLocation] = useState({})
   const [userSetup, setUserSetup] = useState(true)
   const [reloadMap, setReloadMap] = useState(false)
+  const [postFrameRe, setPostFrameRe] = useState(true)
 
   const {user} = useAuth()
   const {darkTheme} = useTheme()
 
   const handdleLocationClick = (location) => {
     setClickedLocation(location)
+  }
+
+  const handleClosingPostFrame = () => {
+    setPostFrameRe(!postFrameRe)
   }
 
   useEffect(() => {
@@ -52,9 +58,9 @@ export default function Home() {
   return (
     <div className="flex flex-col md:flex-row justify-center bg-white h-screen">
       {/* Left Section */}
-        <SlideoutFrame buttonName="\discoverIcon.png" position="left" autoClose={true} backgroundTrans="bg-transparent" widthChange="w-[30%] xs:w-[100%]">
-          <CardSection postObj={posts} />
-        </SlideoutFrame>
+        <SlideoutFrameforDiscovery buttonName="\discoverIcon.png" position="left" onOpen={handleClosingPostFrame}>
+          <CardSection postObj={posts} user={user} />
+        </SlideoutFrameforDiscovery>
 
       {/* Middle Section (Map) and the color dictionary thing*/}
       <div className={darkTheme ? "w-full h-screen bg-gray-800 text-white" : "w-full h-screen bg-white text-black"}>
@@ -67,7 +73,7 @@ export default function Home() {
       </div>
 
       {/* Right Section */}
-      <SlideoutFrame buttonName="\newPostIcon.png" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg">
+      <SlideoutFrame buttonName="\newPostIcon.png" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg" CloseFrameForDiscover={postFrameRe}>
         <LocationSearchNPost clickedLocation={clickedLocation} reloadmap={setReloadMap} />
       </SlideoutFrame>
     </div>
