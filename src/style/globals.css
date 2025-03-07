@@ -6,3 +6,7 @@
 ::-webkit-scrollbar {
     display: none;
   }
+
+  .modal-backdrop-forAI {
+    background-color: transparent
+  }
