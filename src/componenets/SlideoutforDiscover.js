@@ -33,7 +33,7 @@ export function SlideoutFrameforDiscovery({ children, buttonName, position, butt
         >
 
         <div className="fixed top-1/2 left-10 z-50 ">
-        <Button onClick={handleClose} color="gray" pill size="xs" className="p-2">
+        <Button onClick={handleClose} pill size="xs" className="p-2">
             Back
         </Button>
         </div>

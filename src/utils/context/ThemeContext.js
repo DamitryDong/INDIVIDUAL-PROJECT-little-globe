@@ -7,18 +7,13 @@ const ThemeContext = createContext();
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
-
-  const [darkTheme, setDarkTheme] = useState();
-
-  useEffect(() => {
-      // Check if a theme is saved in localStorage and set the initial state
-  const storedTheme = localStorage.getItem('theme');
+  const storedTheme = typeof window !== "undefined" ? localStorage.getItem('theme') : null;
   const initialTheme = storedTheme ? storedTheme === 'dark' : false;
-  setDarkTheme(initialTheme)
-  }, [])
+  
+  const [darkTheme, setDarkTheme] = useState(initialTheme);
 
   useEffect(() => {
-    // Toggle the dark mode class on the root element
+    // Set the class for dark mode when the theme changes
     if (darkTheme) {
       document.documentElement.classList.add("dark");
     } else {
@@ -27,7 +22,7 @@ export const ThemeProvider = ({ children }) => {
 
     // Store the theme in localStorage whenever it changes
     localStorage.setItem('theme', darkTheme ? 'dark' : 'light');
-  }, [darkTheme]); // Run the effect whenever darkTheme changes
+  }, [darkTheme]); // This effect runs whenever darkTheme changes
 
   const toggleTheme = () => {
     setDarkTheme((prev) => !prev);

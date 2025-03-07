@@ -76,7 +76,7 @@ export default function ProfilePage() {
         <div className={`flex flex-row justify-center gap-[5%] h-screen pt-[10%] ${
         darkTheme ? "bg-gray-800 text-white" : "bg-white text-black"
         }`}>
-            <ToastContainer/> 
+            <ToastContainer position="top-left"/> 
             {/* this is the toast container where the message will pop up */}
 
             <div className="text-center mt-[1%]">

@@ -22,9 +22,9 @@ export default function CardSection({ postObj, user }) {
   }, [postObj, user.uid]); // Dependency array should include postObj and user.uid
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 justify-center">
       {/* First scrollable section */}
-      <div className="overflow-y-auto h-full w-full">
+      <div className="overflow-y-auto h-full w-[30%]">
         {postObj ? (
           friendPost.map((post) =>
             post.firebaseKey ? (
@@ -37,7 +37,7 @@ export default function CardSection({ postObj, user }) {
       </div>
 
       {/* Second scrollable section */}
-      <div className="overflow-y-auto h-full w-full">
+      <div className="overflow-y-auto h-full w-[30%]">
         {postObj ? (
           postObj.map((post) =>
             post.firebaseKey ? (
@@ -50,7 +50,7 @@ export default function CardSection({ postObj, user }) {
       </div>
 
       {/* Third scrollable section */}
-      <div className="overflow-y-auto h-full w-full">
+      <div className="overflow-y-auto h-full w-[30%]">
         {yourPost ? (
           yourPost.map((post) =>
             post.firebaseKey ? (
