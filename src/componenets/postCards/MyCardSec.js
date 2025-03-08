@@ -4,7 +4,7 @@
 
 import MyImageCards from "./MyImageCards";
 
-export default function CardSection({ postObj }) {
+export default function MyCardSection({ postObj }) {
   return (
     <div>
       {postObj ? (
