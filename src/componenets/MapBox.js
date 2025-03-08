@@ -7,10 +7,10 @@ import FadeIn from "./GsapAnimation/MapLoad";
 import ScaleOpenAnimation from "./GsapAnimation/MapFirstLoad";
 import { useAuth } from "@/utils/context/authContext";
 
-// Securely load Mapbox API token
+// Securely load Mapbox API token REQUIRED because no token no map :)
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN;
 
-function MapBoxMap( {postObj, handleClickOnMain} ) {
+function MapBoxMap( {postObj, handleClickOnMain, inputLatitude, inputLongitude, pinpointInput} ) {
   const [selectedCordinates, setSelectedCordinates] = useState(null); // set staet of the cordinates we put on to pass through.c
   const [maploaded, setMapLoaded] = useState(false); // This is use so we can run the animation AFTER map is loaded else it breaks. 
   const mapRef = useRef(null); // this is Used for a ref to store the map instance so we can call it again with the second useeffect without resetting the map
@@ -35,7 +35,7 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
       // // map theme passing a way to trigger dark mode note the syntax.. ALSO this is only the original state, there's another useeffect to trigger to rerender when change.
 
       center: [postObj[0].longitude, postObj[0].latitude], // Longitude, Latitude of first post
-      zoom: 2, // Zoom level
+      zoom: 3, // Zoom level
     });
 
     map.on("load", () => setMapLoaded(true)); // Set map loaded state to true when map is loaded so we can run animation.
@@ -45,38 +45,34 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
     // Add the Map coordinates from postObj
     postObj.forEach((post) => {
       if (post.latitude && post.longitude) {
+        const popupContent = `
+          <div class="flex flex-col items-center justify-start text-center overflow-hidden">
+            <img src="${post.imageUrl}" style="width: 150px; height: auto; border-radius: 2px; margin-bottom: 8px" />
+            <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
+            <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+          </div>
+        `;
+        
+        const popup = new mapboxgl.Popup({ closeButton: true, closeOnClick: false })
+          .setHTML(popupContent)
+          .addTo(map);
+    
         if (post.uid === user.uid) {
-          new mapboxgl.Marker({color: "red"})
-          .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(
-            `
-            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
-              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
-              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
-              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
-            </div>
-
-            `
-          ))
-          .addTo(map);
-        }
-        else {
+          new mapboxgl.Marker({ color: "red" })
+            .setLngLat([post.longitude, post.latitude])
+            .setPopup(popup) // Attach the popup to the marker, there's another way to do it but shiw way is shorter, I just made the marker red if it's yours.
+            .addTo(map);
+        } else {
           new mapboxgl.Marker()
-          .setLngLat([post.longitude, post.latitude])
-          .setPopup(new mapboxgl.Popup().setHTML(
-            `
-            <div class="flex flex-col items-center justify-start text-center overflow-hidden">
-              <img src="${post.imageUrl}" style="width: 80px; height: auto; border-radius: 2px; margin-bottom: 8px" />
-              <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
-              <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
-            </div>
-
-            `
-          ))
-          .addTo(map);
+            .setLngLat([post.longitude, post.latitude])
+            .setPopup(popup) 
+            .addTo(map);
+            popup.addTo(map)
         }
       }
-    })
+
+    });
+    
 
     // ADd cortdinates to state for usage when double clicked
     map.on("click", (e) => {
@@ -131,6 +127,25 @@ function MapBoxMap( {postObj, handleClickOnMain} ) {
     markerRef.current = temporaryMarker;
 
   }, [selectedCordinates]);
+
+  useEffect(() => { //this will trigger another input point whenever we use an input instead 
+    if (!selectedCordinates) return;
+    if (inputLatitude === null || inputLongitude === null) return;
+
+    if (markerRef.current) {
+      markerRef.current.remove(); // Remove the previous marker
+    }
+
+    const temporaryMarker = new mapboxgl.Marker({
+      color: 'green'  // Change the marker color to red this is buuild in class style from mapgl
+    })
+        .setLngLat([inputLongitude, inputLatitude])
+        .addTo(mapRef.current);
+
+    // stores the marker in ref so we can remove it with the previous if sttatment
+    markerRef.current = temporaryMarker;
+
+  },[pinpointInput])
 
   return (
     <ScaleOpenAnimation>

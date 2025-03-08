@@ -38,6 +38,22 @@ const getPostByUid = (uid) =>
         })
         .catch(reject);
     });
+
+const getSinglePost = (firebaseKey) =>
+    new Promise((resolve, reject) => {
+      fetch(`${endpoint}/posts.json?orderBy="firebaseKey"&equalTo="${firebaseKey}"`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const users = Object.values(data);
+          resolve(users.length > 0 ? users[0] : null);  //get only one object always
+        })
+        .catch(reject);
+    });
   
 const createPost = (payload) =>
     new Promise((resolve, reject) => {
@@ -90,4 +106,4 @@ const updatePost = (payload) =>
             }); 
     
 
-export { getAllpost, createPost, deletePost, updatePost, getPostByUid };
+export { getAllpost, createPost, deletePost, updatePost, getPostByUid, getSinglePost };

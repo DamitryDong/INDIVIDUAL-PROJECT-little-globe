@@ -6,3 +6,12 @@
 ::-webkit-scrollbar {
     display: none;
   }
+
+  .modal-backdrop-forAI {
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  .modal-content {
+    pointer-events: auto;
+  }

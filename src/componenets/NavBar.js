@@ -14,15 +14,11 @@ function MyNavbar() {
 
   useEffect(() => {
     setImageUrl(user.photoURL || '/defaultProfile.jpeg');
-
-    if (darkTheme) {
-      
-    }
   }, [user.photoURL]);
 
   return (
     <Navbar className={`absolute w-full ${darkTheme ? "bg-gray-800 text-white" : "bg-white text-black"}`}>
-      <Navbar.Brand href="/" className="flex items-center gap-3 z-30">
+      <Navbar.Brand className="flex items-center gap-3 z-30">
         <img src="/icon.png" className="h-10 w-10 rounded-full" alt="Logo"/>
         <span className="text-xl font-semibold dark:text-white">Little Globe</span>
       </Navbar.Brand>
