@@ -7,14 +7,22 @@ import { Button } from "flowbite-react";
 import Gemini from "./Gemini";
 import { useAuth } from "@/utils/context/authContext";
 
-export function LocationSearchNPost({ clickedLocation, reloadmap }) {
+export function LocationSearchNPost({ clickedLocation, reloadmap, feedBackToMapLong, feedBackToMapLatit, handlePinpointInput }) {
   const [imageUrl, setImageFile] = useState("");
   const [isValidImage, setIsValidImage] = useState(true);
   const [locationName, setLocationName] = useState("");
   const [caption, setCaption] = useState("");
   const [reloadstate, setreloadstate] = useState(true)
 
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
+
   const {user} = useAuth();
+
+  useEffect(() => {
+    if (clickedLocation.latitude !== undefined) setLatitude(clickedLocation.latitude);
+    if (clickedLocation.longitude !== undefined) setLongitude(clickedLocation.longitude);
+  }, [clickedLocation]);
 
   useEffect(() => { //this is used to reset the image to true when after the image Url is change so we can check the next image
     setIsValidImage(true);
@@ -27,11 +35,39 @@ export function LocationSearchNPost({ clickedLocation, reloadmap }) {
       </div>
     );
   }
+
+  const handleLongitude = (e) => {
+    let value = e.target.value; // Store input as string to be evaluated, 
+    if (value === "" || value === "-") {
+      setLongitude(value); // Allow empty input and "-" while typing so it's ok to type an empty value without it erroring since we're not hard setting out output when its empty
+    } else {
+      let numValue = parseFloat(value);
+      if (!isNaN(numValue)) {
+        numValue = Math.max(-180, Math.min(180, numValue)); // Clamp within valid value if inputted not empty or -
+        setLongitude(numValue);
+        feedBackToMapLong(numValue) // Additionally feedback the value to the map if it's a value
+      }
+    }
+  };
+  
+  const handleLatitude = (e) => {
+    let value = e.target.value;
+    if (value === "" || value === "-") {
+      setLatitude(value);
+    } else {
+      let numValue = parseFloat(value);
+      if (!isNaN(numValue)) {
+        numValue = Math.max(-90, Math.min(90, numValue));
+        setLatitude(numValue);
+        feedBackToMapLatit(numValue)
+      }
+    }
+  };
   
   const handleSubmit = () => {
     const payload = {
-      longitude: clickedLocation.longitude,
-      latitude: clickedLocation.latitude,
+      longitude: longitude,
+      latitude: latitude,
       locationName,
       caption,
       imageUrl,
@@ -61,16 +97,32 @@ export function LocationSearchNPost({ clickedLocation, reloadmap }) {
       <Gemini />
 
       {/* Longitude */}
-      <div > 
-        <Label htmlFor="longitude" value="Longitude"/>
-        <TextInput id="longitude" style={{ cursor: 'default' }} type="text" sizing="sm" value={clickedLocation.longitude} color="success" readOnly />
+      <div>
+        <Label htmlFor="longitude" color="success" value="Longitude ( -180, 180 )" />
+        <TextInput
+          color="success"
+          id="longitude"
+          type="text"
+          value={longitude}
+          onChange={handleLongitude}
+          placeholder="-73.935242"
+        />
       </div>
 
-      {/* Latitude */}
-      <div>
-        <Label htmlFor="latitude" value="Latitude" />
-        <TextInput id="latitude" style={{ cursor: 'default' }} type="text" sizing="sm" value={clickedLocation.latitude} color="success" readOnly />
+    {/* Latitude */}
+      <div> 
+        <Label htmlFor="latitude" color="success" value="Latitude ( -90, 90 ) " />
+        <TextInput
+          color="success"
+          id="latitude"
+          type="text"
+          value={latitude}
+          onChange={handleLatitude}
+          placeholder="40.730610"
+        />
       </div>
+
+      <Button size="xs" outline gradientDuoTone="cyanToBlue" className="w-7 h-7 rounded-full" onClick={() => handlePinpointInput()}>Pin</Button> 
 
       {/* Location Name */}
       <div>
@@ -113,7 +165,7 @@ export function LocationSearchNPost({ clickedLocation, reloadmap }) {
 
         {/* Submit Button got it from flowbite*/}
         <Button outline gradientDuoTone="greenToBlue" onClick={handleSubmit}>
-          Preview Post
+          Post
         </Button>
 
     </div>

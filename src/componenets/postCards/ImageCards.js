@@ -41,12 +41,6 @@ function ImageCards({ cardobj }) {
             <Tooltip content={author?.username} arrow={false}>
             <Avatar rounded img={author?.photoURL || "/defaultProfile.jpeg"} alt="Post Author" />
             </Tooltip>
-                    {/* THE BUTTON TO FIND LOCATION */}
-          <Tooltip content="Find Post" arrow={false}>
-            <Button className="" size="xs">
-            <img src="/locationIcon.png" className="w-4 h-4 invert" alt="Location Icon" />
-            </Button>
-          </Tooltip>
           
           </div>
 

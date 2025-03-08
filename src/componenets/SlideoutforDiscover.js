@@ -26,10 +26,10 @@ export function SlideoutFrameforDiscovery({ children, buttonName, position, butt
   {/* Drawer with hidden overlay & manual close button */}
         <Drawer
         open={isOpen}
-        onClose={handleClose} // Disable auto-close on background click
+        onClose={() => {}} // this is so we have nothing happen when we click the background and instead handle closing outselfs
         position={position}
         backdrop={true}
-        className={`bg-white w-[100%] xs:w-[100%]`}
+        className={`bg-transparent w-[100%] xs:w-[100%] dark:bg-transparent`}
         >
 
         <div className="fixed top-1/2 left-10 z-50 ">

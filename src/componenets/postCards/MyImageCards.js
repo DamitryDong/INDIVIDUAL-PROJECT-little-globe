@@ -29,17 +29,10 @@ function MyImageCards({ cardobj }) {
 
         {/* Delete button */}
         <div>
-            <Button color="failure" onClick={handleDelete} className="absolute right-0" size="xs">
+            <Button color="failure" onClick={handleDelete} size="xs">
                 Delete
             </Button>
         </div>
-
-        {/* THE BUTTON TO FIND LOCATION */}
-        <Tooltip content="Find Post" arrow={false}>
-          <Button className="absolute left-0" size="xs" outline gradientDuoTone="cyanToBlue">
-          <img src="/locationIcon.png" className="w-4 h-4 dark:border-white" alt="Location Icon" />
-          </Button>
-        </Tooltip>
 
         <ModalForUpdatePost postObj={cardobj}/>
 

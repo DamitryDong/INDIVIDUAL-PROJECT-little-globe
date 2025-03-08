@@ -8,5 +8,10 @@
   }
 
   .modal-backdrop-forAI {
-    background-color: transparent
+    background-color: transparent;
+    pointer-events: none;
+  }
+
+  .modal-content {
+    pointer-events: auto;
   }

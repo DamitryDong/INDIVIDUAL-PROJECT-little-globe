@@ -36,6 +36,7 @@ function Gemini() {
         if there is a latitude and longitude, I want you to return "Longitude:(x) Latitude(x)" with the x being the respective latitude and longitude and nothing else please include the ().
         answer "this question doesn't concern location" if the questions is completely not locations related.
         If the question is asking where the user is currently located, return "I have no access to that information". 
+        If it's possible to give a rough estimate please do it and state that it's a rough estimate.
         If you need more information please ask.
       `);
 
@@ -64,9 +65,9 @@ function Gemini() {
       {/* Modal for input and output */}
       <Modal className="modal-backdrop-forAI" show={openModal} size="md" onClose={() => setOpenModal(false)} popup>
 
-        <Modal.Header />
+        <Modal.Header className="modal-content"/>
         <Modal.Body>
-          <form className="max-w-sm mx-auto flex flex-col mb-4">
+          <form className="max-w-sm mx-auto flex flex-col mb-4 modal-content">
 
             <textarea
               id="aiInput"
@@ -79,15 +80,9 @@ function Gemini() {
 
               <div
                 id="aiOutput"
-                className="flex flex-row justify-start mb-4 block p-2.5 w-full text-sm"
+                className="flex flex-row justify-start mb-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               >
                 {aiAnswer} {/* Display the AI Answer */}
-
-                <div className="ml-auto"> {/* Push button to the right */}
-                  <Button className="" outline gradientDuoTone="greenToBlue" size="xs">
-                    Copy
-                  </Button>
-                </div>
               </div>
 
             <Button size="xs" gradientDuoTone="greenToBlue" onClick={fetchGeminiResponse}>

@@ -9,12 +9,17 @@ import { LocationSearchNPost } from "@/componenets/LocationSearch";
 import { getAllpost } from "@/api/postApi";
 import { getSingleUserByUid } from "@/api/userApi";
 import { useAuth } from "@/utils/context/authContext";
-import { Button } from "flowbite-react";
+import { Badge  } from "flowbite-react";
 import { useTheme } from "@/utils/context/ThemeContext";
 
 export default function Home() {
   const [posts, setPosts] = useState([])
   const [clickedLocation, setClickedLocation] = useState({})
+
+  const [inputLongitude, SetInputLongitude] = useState({})
+  const [inputLatitude, SetInputLatitude] = useState({})
+  const [inputPinpoint, setInputPinpoint] = useState(false)
+
   const [userSetup, setUserSetup] = useState(true)
   const [reloadMap, setReloadMap] = useState(false)
   const [postFrameRe, setPostFrameRe] = useState(true)
@@ -24,6 +29,18 @@ export default function Home() {
 
   const handdleLocationClick = (location) => {
     setClickedLocation(location)
+  }
+
+  const handleLongitudeInput = (location) => {
+    SetInputLongitude(location)
+  }
+
+  const handleLatitudeInput = (location) => {
+    SetInputLatitude(location)
+  }
+
+  const handlePinpointInput= () =>{
+    setInputPinpoint(!inputPinpoint)
   }
 
   const handleClosingPostFrame = () => {
@@ -64,17 +81,18 @@ export default function Home() {
 
       {/* Middle Section (Map) and the color dictionary thing*/}
       <div className={darkTheme ? "w-full h-screen bg-gray-800 text-white" : "w-full h-screen bg-white text-black"}>
-        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick}/>
+        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} inputLatitude={inputLatitude} inputLongitude={inputLongitude} pinpointInput={inputPinpoint}/>
       </div>
       <div className="z-30 absolute left-[4%] bottom-[10%]">
-      <Button size="xs" className="mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" >Others Post</Button>
-      <Button size="xs" className="mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75">Yours Post</Button>
-      <Button size="xs" className="mb-[4%] bg-[#008000] text-white dark:text-black dark:bg-[#008000] shadow-md opacity-75" >All Post</Button>
+      <Badge  size="xs" className="mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" >Others Post</Badge >
+      <Badge  size="xs" className="mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75">Yours Post</Badge >
+      <Badge  size="xs" className="mb-[4%] bg-[#008000] text-white dark:text-black dark:bg-[#008000] shadow-md opacity-75" >All Post</Badge >
       </div>
 
       {/* Right Section */}
+
       <SlideoutFrame buttonName="\newPostIcon.png" position="right" backDrop={false} buttonPosition={"right-5"} shadow="shadow-lg" CloseFrameForDiscover={postFrameRe}>
-        <LocationSearchNPost clickedLocation={clickedLocation} reloadmap={setReloadMap} />
+        <LocationSearchNPost clickedLocation={clickedLocation} reloadmap={setReloadMap} feedBackToMapLong={handleLongitudeInput} feedBackToMapLatit={handleLatitudeInput} handlePinpointInput={handlePinpointInput}/>
       </SlideoutFrame>
     </div>
   );
