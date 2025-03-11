@@ -16,7 +16,7 @@ export default function MyPostPage () {
 
     return (
       <div className="dark:bg-slate-800">
-        <div className="w-[60%] flex justify-center items-center mx-auto">
+        <div className="w-[60%] flex justify-center items-center mx-auto pt-28">
           <MyCardSection postObj={postobj} />
         </div>
       </div>

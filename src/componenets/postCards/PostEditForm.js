@@ -37,7 +37,7 @@ export default function ModalForUpdatePost({postObj}) {
   return (
     <>
     <ToastContainer/> 
-      <Button onClick={() => setOpenModal(true)}>Edit</Button>
+      <Button onClick={() => setOpenModal(true)} size="sm" gradientDuoTone="cyanToBlue">Edit</Button>
       <Modal show={openModal} size="md" onClose={onCloseModal} popup>
         <Modal.Header />
         <Modal.Body>
