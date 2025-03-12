@@ -34,11 +34,6 @@ export default function CardSection({ postObj, user }) {
         )}
       </div>
 
-      <div className="w-[30%] fixed left-10 flex flex-row">
-      <Badge color="gray" size="sm" >My Post</Badge>
-      <Badge color="gray" size="sm">All Post</Badge>
-      </div>
-
       {/* Second scrollable section */}
       <div className="overflow-y-auto h-full w-[100%]">
         {postObj ? (
