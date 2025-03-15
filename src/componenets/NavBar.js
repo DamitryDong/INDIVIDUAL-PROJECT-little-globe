@@ -59,7 +59,7 @@ function MyNavbar() {
               <img src="/myImageIcon.png" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="My Images" />
             </Button>
           </Link>
-          <Link href="#" passHref>
+          <Link href="/messageFriends" passHref>
             <Button className='bg-transparent border-transparent dark:bg-transparent dark:border-transparent' color='gray'>
               <img src="/friendListIcon.webp" className="w-6 h-6" style={{ filter: darkTheme ? 'invert(100%)' : '' }} alt="Friends" />
             </Button>

@@ -22,6 +22,8 @@ export function LocationSearchNPost({ clickedLocation, reloadmap, feedBackToMapL
   useEffect(() => {
     if (clickedLocation.latitude !== undefined) setLatitude(clickedLocation.latitude);
     if (clickedLocation.longitude !== undefined) setLongitude(clickedLocation.longitude);
+    console.log(latitude);
+    console.log(longitude);
   }, [clickedLocation]);
 
   useEffect(() => { //this is used to reset the image to true when after the image Url is change so we can check the next image
@@ -43,7 +45,7 @@ export function LocationSearchNPost({ clickedLocation, reloadmap, feedBackToMapL
     } else {
       let numValue = parseFloat(value);
       if (!isNaN(numValue)) {
-        numValue = Math.max(-180, Math.min(180, numValue)); // Clamp within valid value if inputted not empty or -
+        numValue = Math.max(-180, Math.min(180, numValue)); // we can get the restricted value by getting the largest number of below 180 that we input. 
         setLongitude(numValue);
         feedBackToMapLong(numValue) // Additionally feedback the value to the map if it's a value
       }

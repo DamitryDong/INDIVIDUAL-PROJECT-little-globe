@@ -48,6 +48,11 @@ export default function Home() {
   }
 
   useEffect(() => {
+    SetInputLongitude(clickedLocation.latitude)
+    SetInputLatitude(clickedLocation.longitude)
+  },[clickedLocation])
+
+  useEffect(() => {
     getAllpost().then((post) => {
       setPosts(post);
     });
