@@ -101,7 +101,7 @@ export default function ProfilePage() {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                        <Label value="Display Name" />
+                        <Label value="Image URL" />
                     </div>
                     <TextInput
                         name="changeImage" // you have to use name for the e.target for some reason

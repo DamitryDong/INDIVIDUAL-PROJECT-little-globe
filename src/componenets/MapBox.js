@@ -50,6 +50,7 @@ function MapBoxMap( {postObj, handleClickOnMain, inputLatitude, inputLongitude, 
             <img src="${post.imageUrl}" style="width: 150px; height: auto; border-radius: 2px; margin-bottom: 8px" />
             <h1 class="text-sm sm:text-xs md:text-xs text-black"><strong>${post.locationName}</strong></h1>
             <p class="text-xs sm:text-xs md:text-[10px] text-black">${post.caption}</p>
+
           </div>
         `;
         
