@@ -3,7 +3,7 @@ import { firebaseConfig } from "@/utils/client";
 const endpoint = firebaseConfig.databaseURL;
 
 const getMessageByJoinKey = (roomName) => new Promise((resolve) => { // this is manipulated so if it errors 400 it will instead resolve to {} 
-  fetch(`${endpoint}/messageRoom.json?orderBy="RoomName"&equalTo="${roomName}"`, {
+  fetch(`${endpoint}/messageRoom.json?orderBy="roomName"&equalTo="${roomName}"`, {
       method: "GET", 
       headers: {
           "Content-Type": "application/json",
