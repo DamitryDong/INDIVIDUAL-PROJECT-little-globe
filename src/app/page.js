@@ -15,9 +15,10 @@ import { useTheme } from "@/utils/context/ThemeContext";
 export default function Home() {
   const [posts, setPosts] = useState([])
   const [clickedLocation, setClickedLocation] = useState({})
+  const [filteredMarks, setFilteredMarks] = useState("All")
 
-  const [inputLongitude, SetInputLongitude] = useState({})
-  const [inputLatitude, SetInputLatitude] = useState({})
+  const [inputLongitude, SetInputLongitude] = useState()
+  const [inputLatitude, SetInputLatitude] = useState()
   const [inputPinpoint, setInputPinpoint] = useState(false)
 
   const [userSetup, setUserSetup] = useState(true)
@@ -31,12 +32,14 @@ export default function Home() {
     setClickedLocation(location)
   }
 
-  const handleLongitudeInput = (location) => {
-    SetInputLongitude(location)
+  const handleLongitudeInput = (longitude) => {
+    console.log(`set longitude is ${longitude}`)
+    SetInputLongitude(longitude)
   }
 
-  const handleLatitudeInput = (location) => {
-    SetInputLatitude(location)
+  const handleLatitudeInput = (Latitude) => {
+    console.log(`set latitude is ${Latitude}`)
+    SetInputLatitude(Latitude)
   }
 
   const handlePinpointInput= () =>{
@@ -48,8 +51,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    SetInputLongitude(clickedLocation.latitude)
-    SetInputLatitude(clickedLocation.longitude)
+    SetInputLongitude(clickedLocation.longitude)
+    SetInputLatitude(clickedLocation.latitude)
   },[clickedLocation])
 
   useEffect(() => {
@@ -78,20 +81,20 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row justify-center bg-white h-screen">
+    <div className="flex flex-col md:flex-row justify-center items-center bg-white min-h-screen w-full max-w-screen">
       {/* Left Section */}
         <SlideoutFrameforDiscovery buttonName="\discoverIcon.png" position="left" onOpen={handleClosingPostFrame}>
-          <CardSection postObj={posts} user={user} />
+          <CardSection postObj={posts} />
         </SlideoutFrameforDiscovery>
 
       {/* Middle Section (Map) and the color dictionary thing*/}
       <div className={darkTheme ? "w-full h-screen bg-gray-800 text-white" : "w-full h-screen bg-white text-black"}>
-        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} inputLatitude={inputLatitude} inputLongitude={inputLongitude} pinpointInput={inputPinpoint}/>
+        <MapBoxMap postObj={posts} handleClickOnMain={handdleLocationClick} inputLatitude={inputLatitude} inputLongitude={inputLongitude} pinpointInput={inputPinpoint} mapFilter={filteredMarks}/>
       </div>
       <div className="z-30 absolute left-[4%] bottom-[10%]">
-      <Badge  size="xs" className="mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" >Others Post</Badge >
-      <Badge  size="xs" className="mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75">Yours Post</Badge >
-      <Badge  size="xs" className="mb-[4%] bg-[#008000] text-white dark:text-black dark:bg-[#008000] shadow-md opacity-75" >All Post</Badge >
+      <Badge  size="xs" className="cursor-pointer mb-[4%] bg-[#3fb1ce] text-white dark:text-black dark:bg-[#3fb1ce] shadow-md opacity-75" onClick={() => setFilteredMarks("OtherPost")}>Others Post</Badge >
+      <Badge  size="xs" className="cursor-pointer mb-[4%] bg-[#ff0000] text-white dark:text-black dark:bg-[#ff0000] shadow-md opacity-75" onClick={() => setFilteredMarks("MyPost")}>Yours Post</Badge >
+      <Badge  size="xs" className="cursor-pointer mb-[4%] bg-[#19a152] text-white dark:text-black dark:bg-[#19a152] shadow-md opacity-75" onClick={() => setFilteredMarks("All")}>All Post</Badge >
       </div>
 
       {/* Right Section */}

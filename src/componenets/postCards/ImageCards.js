@@ -16,12 +16,12 @@ function ImageCards({ cardobj }) {
   }, [cardobj])
 
   return (
-      <Card
-        imgAlt="Post Image"
-        imgSrc={cardobj.imageUrl}
-        className={`${darkTheme ? "!bg-slate-800" : "!bg-white "} mt-4`} 
-      >
-        <div className=" p-4 border-t-4">
+    <Card
+      imgAlt="Post Image"
+      imgSrc={cardobj.imageUrl}
+      className={`${darkTheme ? "!bg-slate-800" : "!bg-white "} mt-4`} 
+    >
+      <div className="p-4 border-t-4 ">
 
         <div className={`${darkTheme ? "!bg-slate-800 text-gray-300" : "!bg-white !text-gray-800"} p-4`}>
           <p className="font-semibold text-lg">
@@ -33,21 +33,21 @@ function ImageCards({ cardobj }) {
         </div>
 
         {/* AVATAR SECTION ON THE CARD */}
-          <div
-            className={`p-1 rounded-md flex flex-row items-center justify-center gap-4 ${
-              darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"
-            }`}
-          >
-            <Tooltip content={author?.username} arrow={false}>
-            <Avatar rounded img={author?.photoURL || "/defaultProfile.jpeg"} alt="Post Author" />
-            </Tooltip>
-          
-          </div>
-
+        <div
+          className={`p-1 rounded-md flex flex-row items-center justify-center gap-4 ${darkTheme ? "bg-slate-800 text-gray-100" : "bg-white text-gray-800"}`}
+        >
+          <Tooltip content={author?.username} arrow={false}>
+            <Avatar
+              rounded
+              img={author?.photoURL || "/defaultProfile.jpeg"}
+              alt="Post Author"
+            />
+          </Tooltip>
         </div>
-      </Card>
+
+      </div>
+    </Card>
   );
 }
 
 export default ImageCards;
-

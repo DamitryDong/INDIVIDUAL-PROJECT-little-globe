@@ -22,8 +22,8 @@ export function LocationSearchNPost({ clickedLocation, reloadmap, feedBackToMapL
   useEffect(() => {
     if (clickedLocation.latitude !== undefined) setLatitude(clickedLocation.latitude);
     if (clickedLocation.longitude !== undefined) setLongitude(clickedLocation.longitude);
-    console.log(latitude);
-    console.log(longitude);
+    console.log(`longitude: ${longitude}`);
+    console.log(`latitude: ${latitude}`);
   }, [clickedLocation]);
 
   useEffect(() => { //this is used to reset the image to true when after the image Url is change so we can check the next image
