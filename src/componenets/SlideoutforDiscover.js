@@ -29,12 +29,11 @@ export function SlideoutFrameforDiscovery({ children, buttonName, position, butt
         onClose={() => {}} // this is so we have nothing happen when we click the background and instead handle closing outselfs
         position={position}
         backdrop={true}
-        className={`bg-transparent w-[100%] xs:w-[100%] dark:bg-transparent`}
         >
 
-        <div className="fixed top-1/2 left-10 z-50 ">
-        <Button onClick={handleClose} pill size="xs" className="p-2">
-            Back
+        <div className="fixed top-10 left-10 z-50 opacity-75">
+        <Button onClick={handleClose} outline gradientDuoTone="greenToBlue" pill size="xs" className=" hover:text-white transition">
+        <strong>✕</strong>
         </Button>
         </div>
 

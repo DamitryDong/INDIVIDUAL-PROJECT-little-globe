@@ -4,7 +4,7 @@ import { Button, Drawer, } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/utils/context/ThemeContext";
 
-export function SlideoutFrame({ children, buttonName, position, autoClose = false, backDrop = true, buttonPosition = "left-5", backgroundTrans = "", shadow= "", widthChange="", CloseFrameForDiscover }) {
+export function SlideoutFrame({ children, buttonName, position, autoClose = false, backDrop = true, buttonPosition = "left-5", shadow= "", CloseFrameForDiscover }) {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -26,14 +26,14 @@ export function SlideoutFrame({ children, buttonName, position, autoClose = fals
       {/* Drawer with hidden overlay & manual close button */}
       <Drawer
         open={isOpen}
-        onClose={autoClose ? handleClose : () => {}} // Disable auto-close on background click
+        onClose={autoClose ? handleClose : () => {}}
         position={position}
-        backdrop={backDrop}  // Disable the backdrop to remove black background
-        className= {`${shadow} ${backgroundTrans} dark:${backgroundTrans} ${widthChange}`}
+        backdrop={backDrop}  
+        className={`${shadow} absolute`}
       >
         <Drawer.Items>
-        <Button onClick={handleClose} color="gray" pill size="xs" className="p-2 hover:bg-red-500 hover:text-white transition">
-          ✕
+        <Button onClick={handleClose} outline gradientDuoTone="greenToBlue" pill size="xs" className=" hover:text-white transition">
+          <strong>✕</strong>
         </Button>
           {children}
         </Drawer.Items>
