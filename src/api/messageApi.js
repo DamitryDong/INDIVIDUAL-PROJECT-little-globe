@@ -2,18 +2,45 @@ import { firebaseConfig } from "@/utils/client";
 
 const endpoint = firebaseConfig.databaseURL;
 
-const getMessageByJoinKey = (Key) => new Promise((resolve,reject) => {
-    fetch(`${endpoint}/messageRoom/${Key}.json`, {
-        method: "GET", 
-        headers: {
-            "Content-Type": "application/json",
-          },
-    })
-    .then((response) => response.json())
-    .then((data) => {
-      resolve(data ? Object.values(data) : [0]); // Return just the first one (since there will only be one...)
-    })
-    .catch(reject);
-})
+const getMessageByJoinKey = (roomName) => new Promise((resolve) => { // this is manipulated so if it errors 400 it will instead resolve to {} 
+  fetch(`${endpoint}/messageRoom.json?orderBy="RoomName"&equalTo="${roomName}"`, {
+      method: "GET", 
+      headers: {
+          "Content-Type": "application/json",
+      },
+  })
+  .then((response) => {
+      if (!response.ok) {
+          if (response.status === 400) {
+              resolve({});
+          } else {
+              throw new Error(`Error: ${response.status}`);
+          }
+      }
+      return response.json();
+  })
+  .then((data) => {
+      resolve(data); 
+  })
+  .catch(() => resolve({})); 
+});
 
-export { getMessageByJoinKey }
+const createMessageBox = (payload) =>
+    new Promise((resolve, reject) => {
+        fetch(`${endpoint}/messageRoom.json`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log(data);
+            resolve(data);
+        })
+            .catch(reject);
+    });
+
+
+export { getMessageByJoinKey, createMessageBox }
