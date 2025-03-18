@@ -10,6 +10,7 @@ import MessagingBox from "@/componenets/MessagingBox"
 export default function FriendListPage() {
     const [allUsers, setAllUsers] = useState([]) 
     const [name1Name2, setName1Name2] = useState()
+    const [refreshMessage, setrefreshMessage] = useState(true)
 
     const {user} = useAuth();
 
@@ -29,7 +30,8 @@ export default function FriendListPage() {
 
     const handleOpenMessageBox = (uid) => { // since the issue is that depending on the user, the roomname might change (order) we sort it like this.
         const sortedUids = [uid, user.uid].sort();
-        setName1Name2(`${sortedUids[0]}_${sortedUids[1]}`); 
+        setName1Name2(`${sortedUids[0]}_${sortedUids[1]}`)
+        setrefreshMessage(!refreshMessage)
     }
 
     return (
@@ -46,7 +48,7 @@ export default function FriendListPage() {
                                     <Dropdown.Header>
                                         <span className="block text-sm">{individual.username}</span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item onClick={(e) => handleOpenMessageBox(individual.uid)}>Message</Dropdown.Item>
+                                    <Dropdown.Item onClick={() => handleOpenMessageBox(individual.uid)}>Message</Dropdown.Item>
                                 </Dropdown>
                         </div>
                     ))
@@ -56,7 +58,7 @@ export default function FriendListPage() {
             </div>
 
             <div className="w-[80%] bg-green-400">
-                <MessagingBox messageBoxName={name1Name2}/>
+                <MessagingBox messageBoxName={name1Name2} refreshMessage={refreshMessage} myuid={user.uid}/>
             </div>
         </div>
     )

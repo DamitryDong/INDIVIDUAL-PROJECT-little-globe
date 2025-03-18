@@ -2,28 +2,20 @@ import { firebaseConfig } from "@/utils/client";
 
 const endpoint = firebaseConfig.databaseURL;
 
-const getMessageByJoinKey = (roomName) => new Promise((resolve) => { // this is manipulated so if it errors 400 it will instead resolve to {} 
-  fetch(`${endpoint}/messageRoom.json?orderBy="roomName"&equalTo="${roomName}"`, {
-      method: "GET", 
-      headers: {
+const getMessageByJoinKey = (roomName) =>
+    new Promise((resolve, reject) => {
+      fetch(`${endpoint}/messageRoom.json?orderBy="roomName"&equalTo="${roomName}"`, {
+        method: "GET",
+        headers: {
           "Content-Type": "application/json",
-      },
-  })
-  .then((response) => {
-      if (!response.ok) {
-          if (response.status === 400) {
-              resolve({});
-          } else {
-              throw new Error(`Error: ${response.status}`);
-          }
-      }
-      return response.json();
-  })
-  .then((data) => {
-      resolve(data); 
-  })
-  .catch(() => resolve({})); 
-});
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          resolve(data ? Object.values(data) : []); 
+        })
+        .catch(reject);
+    });
 
 const createMessageBox = (payload) =>
     new Promise((resolve, reject) => {
