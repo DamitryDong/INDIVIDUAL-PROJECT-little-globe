@@ -34,5 +34,22 @@ const createMessageBox = (payload) =>
             .catch(reject);
     });
 
+    const updateMessages = (roomName, newMessage) =>  //note 2 value
+        new Promise((resolve, reject) => {
+            const messageId = `msg_${Date.now()}`;  // Create a unique ID for the message, we can use this to date and also give the message a unique id to call
+    
+            fetch(`${endpoint}/messageRoom/${roomName}/messages/${messageId}`, { //the path is as simple as this, we use 2 values here.
+                method: 'PATCH', //could also use a post since we're making a complete new message
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newMessage),
+            }) 
+            .then((response) => response.json())
+            .then((data) => resolve(data))
+            .catch(reject);
+        });
+    
 
-export { getMessageByJoinKey, createMessageBox }
+
+export { getMessageByJoinKey, createMessageBox, updateMessages }
