@@ -17,38 +17,42 @@ const getMessageByJoinKey = (roomName) =>
         .catch(reject);
     });
 
-const createMessageBox = (payload) =>
-    new Promise((resolve, reject) => {
-        fetch(`${endpoint}/messageRoom.json`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(payload),
-        })
-        .then((response) => response.json())
-        .then((data) => {
-            console.log(data);
-            resolve(data);
-        })
-            .catch(reject);
-    });
-
-    const updateMessages = (roomName, newMessage) =>  //note 2 value
+    const createMessageBox = (payload) =>
         new Promise((resolve, reject) => {
-            const messageId = `msg_${Date.now()}`;  // Create a unique ID for the message, we can use this to date and also give the message a unique id to call
-    
-            fetch(`${endpoint}/messageRoom/${roomName}/messages/${messageId}`, { //the path is as simple as this, we use 2 values here.
-                method: 'PATCH', //could also use a post since we're making a complete new message
+            // IF U USE PUT you can change the actual spot where the firebasekey is located at!!!
+            fetch(`${endpoint}/messageRoom/${payload.roomName}.json`, {
+                method: 'PUT', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newMessage),
-            }) 
+                body: JSON.stringify({
+                    roomName: payload.roomName,  // We still use roomName inside the object
+                    messages: payload.messages || {} 
+                }),
+            })
             .then((response) => response.json())
-            .then((data) => resolve(data))
+            .then((data) => {
+                console.log("Room created:", data);
+                resolve(data);
+            })
             .catch(reject);
         });
+    
+
+        const updateMessages = (roomName, payload) => {
+            return new Promise((resolve, reject) => {
+                fetch(`${endpoint}/messageRoom/${roomName}/messages.json`, {
+                    method: 'POST',  // Use POST to add a new message with an auto-generated key
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
+                })
+                .then((response) => response.json())
+                .then((data) => resolve(data))
+                .catch(reject);
+            });
+        };
     
 
 

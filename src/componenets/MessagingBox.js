@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
-import { getMessageByJoinKey, createMessageBox } from "@/api/messageApi"
+import { getMessageByJoinKey, createMessageBox, updateMessages } from "@/api/messageApi"
 
 export default function MessagingBox ({ messageBoxName, refreshMessage, myuid }) {
     const [messageBox, setMessageBox] = useState(["empty"])
@@ -11,9 +11,14 @@ export default function MessagingBox ({ messageBoxName, refreshMessage, myuid })
         setMessageInput(e.target.value)
     }
 
-    const handleSubmit = (e) => { //TODO:make submit actually make the update to the messages 
+    const handleSubmit = (e) => { 
         e.preventDefault(); 
-        console.log("Current message is", messageInput);
+        const payload = {
+            dateMade : Date.now(),
+            message : messageInput,
+            user : myuid,
+        }
+        updateMessages(messageBoxName , payload)
         setMessageInput('');  
     };
 
@@ -61,26 +66,21 @@ export default function MessagingBox ({ messageBoxName, refreshMessage, myuid })
         <div> 
         ChatRoom ID: {messageBox[0]?.roomName} 
         {
-            messageBox[0]?.messages && messageBox[0].messages.length > 0 ? (
-
-                messageBox[0].messages.map((message, index) => { //loop through the messages for display if the room exist. 
-                    if (message.user === "Bot") {
-                        return <div className="bg-red-600" key={index}>{message.message} it will be 1$ per message, watch it I have your information, just kidding</div>
-                    }
-                    else if (message.user === myuid) {
-                        return <div className="bg-amber-500" key={index}>Your message{message.message}</div>
-                    }
-                    else {
-                        return <div className="bg-violet-700" key={index}> their message: {message.message}</div>
-                    }
+            messageBox[0]?.messages && Object.values(messageBox[0].messages).length > 0 ? (
+                Object.values(messageBox[0].messages).map((message, index) => { // Convert the object to an array using Object.values()
+                if (message.user === "Bot") {
+                    return <div className="bg-red-600" key={index}>{message.message} it will be 1$ per message, watch it I have your information, just kidding</div>
+                } else if (message.user === myuid) {
+                    return <div className="bg-amber-500" key={index}>Your message: {message.message}</div>
+                } else {
+                    return <div className="bg-violet-700" key={index}>Their message: {message.message}</div>
+                }
                 })
-
-            ) 
-            
-            : (
-                "Click a person and start a chat!"
+            ) : (
+                "Click a person to start chatting"
             )
-        }
+            }
+
                                 {/* the handle submit and change, getting real conformtable with these!! could also use a event listener but make sure to manage render*/}
         <div className="absolute bottom-0 w-[80%]" onSubmit={handleSubmit}>     
             <form id="chatForm">
