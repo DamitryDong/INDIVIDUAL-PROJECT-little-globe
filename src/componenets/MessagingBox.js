@@ -45,7 +45,13 @@ export default function MessagingBox ({ messageBoxName, refreshMessage, myuid })
                             console.log("created new chatroom!!")
                             getMessageByJoinKey(messageBoxName)
                             .then((data) => {
+
                                 setMessageBox(data);
+                                // const tempMessages = [];
+                                // data.forEach((message) => {
+                                //     tempMessages.push(message)
+                                // })
+                                // setMessageBox(tempMessages);
                             })
                         })
                     }
@@ -54,6 +60,13 @@ export default function MessagingBox ({ messageBoxName, refreshMessage, myuid })
                         console.log("dataSetted!!")
                         console.log(data)
                         setMessageBox(data); // we set the data if it already exist 
+
+                        // console.log(data)
+                        // const tempMessages = [];
+                        // data.forEach((message) => {
+                        //     tempMessages.push(message)
+                        // })
+                        // setMessageBox(data); // we set the data if it already exist 
                     }
 
                 })
